@@ -1,0 +1,40 @@
+{
+  "metrics": [
+    {
+      "id": "late_completion",
+      "definition_version": "v1",
+      "role": "outcome",
+      "worse": "higher",
+      "threshold": 0.15,
+      "min_change": 0.05,
+      "min_denominator": 30,
+      "min_coverage": 0.95,
+      "consecutive_days": 3
+    },
+    {
+      "id": "approval_returns",
+      "definition_version": "v1",
+      "role": "guardrail",
+      "worse": "higher",
+      "threshold": 0.08,
+      "min_change": 0.03,
+      "min_denominator": 30,
+      "min_coverage": 0.95,
+      "consecutive_days": 3
+    }
+  ],
+  "cohorts": [
+    "invoices_eu",
+    "invoices_domestic"
+  ],
+  "windows": {
+    "baseline": {
+      "start": "2026-09-24T00:00:00Z",
+      "end": "2026-10-01T00:00:00Z"
+    },
+    "current": {
+      "start": "2026-10-01T00:00:00Z",
+      "end": "2026-10-08T00:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Operational Quality Monitor"
+  short_description: "Review outcome rates, guardrails and emerging delays"
+  default_prompt: "Use $operational-quality-monitor to assess configured business outcome and guardrail metrics and prioritize evidence-based findings for review."

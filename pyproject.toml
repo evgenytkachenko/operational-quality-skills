@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "operational-quality-skills"
 version = "0.1.0"
-description = "Evidence-led operational root-cause investigation"
+description = "Operational quality monitoring and evidence-led root-cause investigation"
 requires-python = ">=3.11"
 dependencies = ["pydantic>=2.7,<3"]
 
@@ -17,6 +17,7 @@ test = ["pytest>=8,<10"]
 [project.scripts]
 ops-rca = "operational_quality.cli:main"
 ops-rca-review = "operational_quality.cli:review_main"
+ops-monitor = "operational_quality.monitor_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -31,3 +32,7 @@ license-files = ["LICENSE", "third_party/*LICENSE"]
 "share/operational-quality-skills/skills/operations-root-cause" = ["skills/operations-root-cause/SKILL.md"]
 "share/operational-quality-skills/skills/operations-root-cause/agents" = ["skills/operations-root-cause/agents/openai.yaml"]
 "share/operational-quality-skills/skills/operations-root-cause/references" = ["skills/operations-root-cause/references/*.md"]
+
+"share/operational-quality-skills/skills/operational-quality-monitor" = ["skills/operational-quality-monitor/SKILL.md"]
+"share/operational-quality-skills/skills/operational-quality-monitor/agents" = ["skills/operational-quality-monitor/agents/openai.yaml"]
+"share/operational-quality-skills/skills/operational-quality-monitor/references" = ["skills/operational-quality-monitor/references/*.md"]

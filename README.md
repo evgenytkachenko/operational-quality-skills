@@ -1,8 +1,13 @@
 # Operational Quality Skills
 
-An evidence-led agent skill for business-process delays, routing errors, rework and
-recurring exceptions. It combines deterministic cross-system correlation with an LLM-led
-investigation, competing hypotheses and preventive controls for human review.
+Two read-only agent skills for business-process delays, routing errors, rework and
+recurring exceptions. Both combine deterministic evidence processing with host-agent
+review and explicit human decisions.
+
+| Skill | Purpose |
+| --- | --- |
+| [Operational Quality Monitor](skills/operational-quality-monitor/SKILL.md) | Assess population-level outcome/guardrail rates and prioritize emerging signals |
+| [Operations Root-Cause](skills/operations-root-cause/SKILL.md) | Investigate affected cases, compare causal hypotheses and propose preventive controls |
 
 ## Install
 
@@ -14,8 +19,8 @@ python -m venv .venv
 python -m pip install -e '.[test,integrations]'
 ```
 
-Copy `skills/operations-root-cause` into your host's configured skills directory (for Codex,
-`~/.codex/skills/operations-root-cause`), keeping its references and agents metadata together.
+Copy either or both folders under `skills/` into your host's configured skills directory
+(for Codex, `~/.codex/skills/`), keeping each folder's references and agents metadata together.
 Install the CLI in the same environment the host uses. The skill is independently readable;
 the helper provides deterministic enforcement. No credentials or model installation occurs.
 This repository does not automatically install into a personal ChatGPT skill service.
@@ -53,3 +58,23 @@ contacted in the test suite. Tenant schemas, authentication, row-level permissio
 real model reasoning still need an authorized deployment trial. SDKs load response bodies
 before local caps; host-agent tools are governed by host permissions, not CLI enforcement.
 Redaction is best-effort, and quote validity cannot prove causality. Review before use.
+
+## Operational Quality Monitor
+
+```sh
+ops-monitor --config examples/monitor/config.json --mock examples/monitor/deterioration.json --output output/monitor-demo
+ops-monitor --config examples/monitor/rolling.json --mock examples/monitor/deterioration.json --as-of 2026-10-09T00:00:00Z --output output/monitor-replay
+```
+
+The monitor has independent aggregate budgets and daily cohort contracts rather than RCA's
+case-ID limits. It calculates weighted rates, missingness, coverage, threshold breaches and
+descriptive window differences. It withholds comparisons for insufficient data, produces
+a host-agent review handoff and recommends human-reviewed RCA only when warranted.
+
+Its live profile reads an existing approved PostgreSQL aggregate reporting view through
+psycopg; sampled Datadog incident logs are not treated as a business population. See the
+[aggregate contract](skills/operational-quality-monitor/references/contracts.md),
+[one-shot/scheduled execution interface](skills/operational-quality-monitor/references/execution.md),
+[fictional review example](examples/monitor/review-example.md) and
+[monitor verification](docs/monitor-verification.md). No external schedules or notifications
+are created. The CLI performs no LLM calls; the installed skill guides host-agent review.

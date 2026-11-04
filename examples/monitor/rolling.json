@@ -1,0 +1,35 @@
+{
+  "metrics": [
+    {
+      "id": "late_completion",
+      "definition_version": "v1",
+      "role": "outcome",
+      "worse": "higher",
+      "threshold": 0.15,
+      "min_change": 0.05,
+      "min_denominator": 30,
+      "min_coverage": 0.95,
+      "consecutive_days": 3
+    },
+    {
+      "id": "approval_returns",
+      "definition_version": "v1",
+      "role": "guardrail",
+      "worse": "higher",
+      "threshold": 0.08,
+      "min_change": 0.03,
+      "min_denominator": 30,
+      "min_coverage": 0.95,
+      "consecutive_days": 3
+    }
+  ],
+  "cohorts": [
+    "invoices_eu",
+    "invoices_domestic"
+  ],
+  "rolling": {
+    "baseline_days": 7,
+    "current_days": 7,
+    "lag_days": 1
+  }
+}
