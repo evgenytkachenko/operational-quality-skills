@@ -3,11 +3,12 @@
 Built in the cloud workspace using Python 3.12.14. Verified with Datadog API client
 2.62.0, psycopg 3.3.8, Ollama client 0.6.3 and Pydantic 2.14.2.
 
-- 36 pytest tests pass. Network connections are forbidden in the test process.
+- 54 pytest tests pass. Network connections are forbidden in the test process.
 - Fictional CLI collection produces 11 normalized records across four sources and two
   invoice cases. Saved-packet review validates the hand-authored example assessment.
 - Datadog contract tests execute the installed official SDK's generated parameter checks
-  for logs, spans and events, replacing API dispatch before any HTTP request.
+  for logs, spans and events, replacing API dispatch before any HTTP request. Additional regression tests deserialize
+  non-empty log, span and event fixtures through the actual SDK response models.
 - PostgreSQL tests use psycopg's real SQL composition and a fake connection, verifying
   read-only mode, statement timeout, bound values and a fixed SELECT with LIMIT.
 - Model tests use a fake client and validate output structure and every evidence quote;
@@ -22,7 +23,19 @@ Built in the cloud workspace using Python 3.12.14. Verified with Datadog API cli
 - Python wheel packaging includes the skill resources and both MIT license notices.
 
 This is offline functional/contract verification, not a live integration certification or
-a model-quality benchmark. SDK HTTP response parsing, tenant-specific Datadog field layouts,
+a model-quality benchmark. Live HTTP behavior, tenant-specific Datadog field layouts,
 actual database permissions, sampling/retention, model context handling and causal reasoning
 need a separately authorized trial. Packet hashes detect accidental mismatch, not malicious
 rewriting or source forgery. Best-effort redaction is not a data-loss prevention system.
+
+## Independent review follow-up
+
+A separate reviewer inspected the initial commit and reproduced four defects: log-shaped
+span fixtures, missed bearer/JSON secrets, an overly restrictive record-ID rule, and an
+overstated loopback privacy boundary. All four were corrected with regression tests.
+Additional fixes cover escaped JSON output bypasses, explicit epoch units, citations for
+normalized fields and honest empty-evidence results. Response-model deserialization is now
+covered; this still does not certify live integration or inference behavior.
+
+A fresh isolated virtual environment successfully installs the built wheel, runs both CLI
+commands on the synthetic case, and contains the packaged skill resources and licenses.

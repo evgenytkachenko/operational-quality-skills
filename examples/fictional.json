@@ -88,12 +88,14 @@
       {
         "id": "s1",
         "attributes": {
-          "timestamp": "2026-10-01T08:04:00Z",
-          "message": "Supplier lookup completed successfully in 120 ms.",
           "attributes": {
             "case_id": "INV-104",
             "activity": "supplier_lookup",
             "queue": "router"
+          },
+          "start_timestamp": "2026-10-01T08:04:00Z",
+          "custom": {
+            "message": "Supplier lookup completed successfully in 120 ms."
           }
         }
       }
@@ -110,9 +112,9 @@
           "timestamp": "2026-10-01T12:03:00Z",
           "message": "Manual review found EU region in submitted invoice.",
           "attributes": {
-            "case_id": "INV-104",
-            "activity": "review_note",
-            "queue": "intake"
+            "aggregation_key": "INV-104",
+            "title": "review_note",
+            "service": "intake"
           }
         }
       }

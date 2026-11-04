@@ -36,10 +36,10 @@
       "fields": {
         "id": "id",
         "case_id": "attributes.attributes.case_id",
-        "timestamp": "attributes.timestamp",
+        "timestamp": "attributes.start_timestamp",
         "activity": "attributes.attributes.activity",
         "queue": "attributes.attributes.queue",
-        "message": "attributes.message"
+        "message": "attributes.custom.message"
       }
     },
     {
@@ -47,12 +47,13 @@
       "kind": "datadog_events",
       "fields": {
         "id": "id",
-        "case_id": "attributes.attributes.case_id",
+        "case_id": "attributes.attributes.aggregation_key",
         "timestamp": "attributes.timestamp",
-        "activity": "attributes.attributes.activity",
-        "queue": "attributes.attributes.queue",
+        "activity": "attributes.attributes.title",
+        "queue": "attributes.attributes.service",
         "message": "attributes.message"
-      }
+      },
+      "case_field": "@aggregation_key"
     }
   ]
 }

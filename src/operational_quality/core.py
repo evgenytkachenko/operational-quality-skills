@@ -4,7 +4,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -31,6 +31,7 @@ class Source(Strict):
     kind: Literal["datadog_logs", "datadog_spans", "datadog_events", "postgres"]
     fields: dict[str, str]
     case_field: str = "@case_id"
+    timestamp_format: Literal["iso8601", "epoch_s", "epoch_ms", "epoch_ns"] = "iso8601"
     site: Literal["datadoghq.com", "datadoghq.eu", "us3.datadoghq.com", "us5.datadoghq.com", "ap1.datadoghq.com", "ap2.datadoghq.com", "ddog-gov.com"] = "datadoghq.com"
     schema_name: str = "reporting"
     view: str = "operation_events"
@@ -47,6 +48,8 @@ class Source(Strict):
                 raise ValueError("invalid identifier")
         if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.]*", v) for v in self.fields.values()):
             raise ValueError("invalid field mapping")
+        if self.kind == "postgres" and self.timestamp_format != "iso8601":
+            raise ValueError("PostgreSQL profile requires a timezone-aware timestamp column")
         if self.kind == "postgres" and any('.' in v for v in self.fields.values()):
             raise ValueError("Postgres fields must be column names")
         return self
@@ -80,10 +83,25 @@ class Config(Strict):
 
 def redact(value):
     text = str(value)
+    # Consume the whole credential including the authentication scheme.
+    text = re.sub(r"(?i)\b(?:Bearer|Basic)\s+[A-Za-z0-9._~+/=-]+", "[CREDENTIAL_REMOVED]", text)
+    key = r"(?:token|password|secret|api[_-]?key|authorization)"
+    # Common JSON log values, including escaped quotes inside the secret.
+    text = re.sub(r'(?i)("' + key + r'"\s*:\s*)"(?:\\.|[^"\\])*"', r'\1"[REDACTED]"', text)
+    text = re.sub(r"(?i)\b(" + key + r")\s*[:=]\s*[^\s,;]+", r"\1=[REDACTED]", text)
     text = re.sub(r"https?://\S+", "[URL REMOVED]", text)
     text = re.sub(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", "[EMAIL REMOVED]", text)
-    text = re.sub(r"(?i)\b(token|password|secret|api[_-]?key|authorization)\s*[:=]\s*\S+", r"\1=[REDACTED]", text)
     return ''.join(c for c in text if c >= ' ' or c == '\n')
+
+
+def source_instant(value, encoding):
+    if encoding == 'iso8601':
+        return instant(value)
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise ValueError('explicit epoch encoding requires an integer')
+    scale = {'epoch_s': 1, 'epoch_ms': 1000, 'epoch_ns': 1000000000}[encoding]
+    seconds, remainder = divmod(value, scale)
+    return datetime(1970, 1, 1, tzinfo=timezone.utc) + timedelta(seconds=seconds, microseconds=remainder * 1000000 // scale)
 
 
 def get_path(row, path):
@@ -97,11 +115,13 @@ def normalize(config, source, rows):
     for index, row in enumerate(rows):
         try:
             item = {key: get_path(row, path) for key, path in source.fields.items()}
+            if isinstance(item['id'], int) and not isinstance(item['id'], bool):
+                item['id'] = str(item['id'])
             if not all(isinstance(item[k], str) and item[k].strip() for k in FIELDS - {"timestamp"}):
                 raise ValueError("non-string or empty field")
-            if not re.fullmatch(TOKEN, item['id']) or not re.fullmatch(TOKEN, item['case_id']):
+            if not re.fullmatch(r'[A-Za-z0-9_.:/+=-]{1,512}', item['id']) or not re.fullmatch(TOKEN, item['case_id']):
                 raise ValueError("invalid identifier")
-            when = instant(item['timestamp'])
+            when = source_instant(item['timestamp'], source.timestamp_format)
             if item['case_id'] not in config.case_ids or not config.start <= when < config.end:
                 notes.append(f"{source.name}: row {index} outside requested scope")
                 continue
@@ -116,7 +136,7 @@ def normalize(config, source, rows):
             item['source'] = source.name
             item['ref'] = f"{source.name}:{item.pop('id')}"
             events.append(item)
-        except (KeyError, TypeError, ValueError):
+        except (KeyError, TypeError, ValueError, OverflowError):
             notes.append(f"{source.name}: row {index} missing, ambiguous or invalid fields; excluded")
     return events, notes
 
@@ -134,7 +154,7 @@ def analyze(config, fetch):
             events.extend(normalized)
             limitations.extend(f"{source.name}: {n}" for n in notes)
             limitations.extend(issues)
-            coverage.append({'source': source.name, 'retrieved': len(rows[:config.max_rows]), 'accepted': len(normalized), 'status': 'partial' if notes or issues else 'bounded'})
+            coverage.append({'source': source.name, 'kind': source.kind, 'retrieved': len(rows[:config.max_rows]), 'accepted': len(normalized), 'status': 'partial' if notes or issues else 'bounded'})
             if not normalized:
                 limitations.append(f"{source.name}: no usable evidence; absence is not proof of no activity")
         except Exception as exc:

@@ -26,7 +26,10 @@ packet as the original. Each accepted report records the packet's SHA-256 and qu
 The SHA records integrity linkage, not source authenticity or a cryptographic signature.
 
 Optional: install `.[local-model]`, then add `--local-model INSTALLED_MODEL`. This calls an
-already running Ollama at `127.0.0.1:11434`; it never pulls or starts a model. It performs one
+already running Ollama at `127.0.0.1:11434`; it never pulls or starts a model.
+Recognizable `:cloud` and `-cloud` selectors are rejected. A loopback destination does
+not guarantee offline inference: the operator must verify a local model and disable
+server-side cloud/proxy features; aliases and custom servers cannot be certified by this CLI. It performs one
 60-second request with 3,000 output tokens and a 24,000-character evidence input cap.
 Tokenization varies by model; this conservative cap does not guarantee context fit. No tools or autonomous model retrieval are
 available. Model semantics and instruction adherence are not mechanically guaranteed.
@@ -38,3 +41,8 @@ The reused provenance checker deliberately does not certify semantic support. A 
 quote can contradict the proposed claim. Final review must assess mechanism, alternative
 explanations, knowledge at decision time, control feasibility and measurable outcomes.
 No automated validator can establish causation from these records alone.
+
+When no usable evidence exists, the schema permits empty observations and controls,
+with unknown hypotheses and explicit gaps. Never fabricate a fact to satisfy a schema.
+Evidence links can cite exact normalized message, case_id, timestamp, activity or queue
+fields; part names and quotes must match the saved packet.

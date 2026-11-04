@@ -9,7 +9,12 @@ pages, disables SDK retry, enforces row/page limits and per-request timeout, and
 remaining cursors as truncation. SDK responses are normalized through configured dotted
 field paths; real tenant attribute layouts must be checked before live use. Span records
 are trace evidence, not full traces. Event timestamp mappings may differ from logs.
-The adapter expects timezone-bearing timestamps, not guessed units or local times.
+The default timestamp_format is iso8601 (timezone-bearing strings or SDK datetimes).
+Explicit epoch_s, epoch_ms or epoch_ns configuration accepts integer timestamps; units
+are never guessed. Nanoseconds are normalized to microsecond precision. The example
+span mapping uses start_timestamp and a custom message attribute; the event mapping
+uses aggregation_key, title and service. These are explicit fictional instrumentation
+contracts, not automatic schema discovery. Configure them to match the approved source.
 
 Use `DD_API_KEY` and `DD_APP_KEY` in the existing runtime secret store, with only the
 permissions needed for these reads. Select the approved Datadog site in config. Never
@@ -29,8 +34,10 @@ Use the existing `psycopg` client against an approved reporting replica/view, su
 order fulfillment, invoice approvals, claims handling or service-request history.
 This is an explicitly chosen generic profile, not a claim about a company's systems.
 An operator selects schema, view, DSN environment-variable name and six column mappings:
-`id`, `case_id`, `timestamp`, `activity`, `queue`, `message`. All are strings except
-`timestamp`, which is a timezone-aware database datetime. IDs must be opaque and globally
+`id`, `case_id`, `timestamp`, `activity`, `queue`, `message`. Text fields are strings; record IDs may also be integers. The default `timestamp`
+must be a timezone-aware database datetime; this profile requires iso8601 rather than
+epoch columns so SQL time predicates retain their datetime semantics. Record IDs allow up to 512 ASCII letters, digits
+and `_.:/+=-`; query case IDs retain the stricter 80-character limit. IDs must be globally
 unique within a source; case IDs must share the same namespace across selected sources.
 Provide a pseudonymized, least-privilege view with an index on case ID and timestamp.
 
@@ -55,7 +62,8 @@ other host-tool retrieval is supervised by the host and is not a built-in CLI ad
 ## Limits and sensitive content
 
 Only mapped fields reach the packet; raw responses and exception text are not persisted.
-Common emails, URLs and labeled secrets are removed and text is capped. This is not full
+Common emails, URLs, bearer/basic credentials and labeled plaintext/JSON secrets are
+removed and text is capped. Generated text is checked after JSON decoding. This is not full
 DLP: names, unlabeled secrets and sensitive IDs may remain. Use a sanitized source view,
 review packets before model exposure, honor local retention policy and restrict output access.
 SDKs materialize responses before local caps; transport byte limits are not enforced.
