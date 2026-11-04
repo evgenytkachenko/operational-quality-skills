@@ -125,3 +125,9 @@ Install with `python -m pip install .` and follow the [first-run guide](skills/s
 The [Referral Packet Auditor](skills/referral-packet-auditor/SKILL.md) reconciles fictional administrative document metadata and receiving-desk acknowledgment for an explicitly selected immutable referral packet revision. It flags checklist omissions, unobserved receipts and acknowledgments, and version/fingerprint conflicts; uncertain coverage or identity yields unknown.
 
 Use `ops-referral-packets` with the [first-run guide](skills/referral-packet-auditor/references/first-run.md). It never reads clinical contents or makes consent, clinical, urgency, scheduling or insurance decisions. This profile is mock-only, without external actions or a live medical connector. See [verification](docs/referral-verification.md).
+
+## Pharmacy Improvement Workbench (optional local LLM)
+
+The [workbench](skills/pharmacy-improvement-workbench/SKILL.md) bridges evidence-backed hypotheses and approved control evaluation: detect repeated recorded administrative exception categories across selected fictional cases, draft competing explanations and controls using host review or an explicitly requested installed local Ollama model, then bind each proposal to an accountable role, deadline and closure-evidence requirement. Drafts are not approved or implemented actions.
+
+Follow the [workflow](skills/pharmacy-improvement-workbench/references/workflow.md) for `ops-improvement`. Default mode makes no model calls; development tests use mocked responses only. The existing Control Validation skill remains responsible for approved pilots, guardrails, fidelity and measured outcomes. Read [execution limits](skills/pharmacy-improvement-workbench/references/limits.md) and [verification](docs/improvement-verification.md); no model accuracy, memory fit or real-company integration is claimed.

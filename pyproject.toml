@@ -20,6 +20,7 @@ ops-rca-review = "operational_quality.cli:review_main"
 ops-monitor = "operational_quality.monitor_cli:main"
 ops-control-validate = "operational_quality.control_cli:main"
 ops-conformance = "operational_quality.conformance_cli:main"
+ops-improvement = "operational_quality.improvement_cli:main"
 ops-referral-packets = "operational_quality.referral_cli:main"
 ops-store-handoffs = "operational_quality.store_cli:main"
 
@@ -56,3 +57,7 @@ license-files = ["LICENSE", "third_party/*LICENSE"]
 "share/operational-quality-skills/skills/referral-packet-auditor" = ["skills/referral-packet-auditor/SKILL.md"]
 "share/operational-quality-skills/skills/referral-packet-auditor/agents" = ["skills/referral-packet-auditor/agents/openai.yaml"]
 "share/operational-quality-skills/skills/referral-packet-auditor/references" = ["skills/referral-packet-auditor/references/*.md"]
+
+"share/operational-quality-skills/skills/pharmacy-improvement-workbench" = ["skills/pharmacy-improvement-workbench/SKILL.md"]
+"share/operational-quality-skills/skills/pharmacy-improvement-workbench/agents" = ["skills/pharmacy-improvement-workbench/agents/openai.yaml"]
+"share/operational-quality-skills/skills/pharmacy-improvement-workbench/references" = ["skills/pharmacy-improvement-workbench/references/*.md"]

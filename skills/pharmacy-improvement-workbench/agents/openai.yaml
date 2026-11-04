@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pharmacy Improvement Workbench"
+  short_description: "Draft accountable controls from fictional exceptions"
+  default_prompt: "Use $pharmacy-improvement-workbench to prepare evidence-backed administrative improvement proposals using synthetic data and human review."

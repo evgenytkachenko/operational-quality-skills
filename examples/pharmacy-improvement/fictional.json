@@ -1,0 +1,54 @@
+{
+  "synthetic": true,
+  "complete": true,
+  "events": [
+    {
+      "id": "EV-010",
+      "case_id": "RX-DEMO-001",
+      "timestamp": "2026-10-05T08:00:00Z",
+      "activity": "handoff_sent",
+      "queue": "pharmacy",
+      "exception": "none"
+    },
+    {
+      "id": "EV-011",
+      "case_id": "RX-DEMO-001",
+      "timestamp": "2026-10-05T09:00:00Z",
+      "activity": "exception_recorded",
+      "queue": "pharmacy",
+      "exception": "ack_unrecorded"
+    },
+    {
+      "id": "EV-012",
+      "case_id": "RX-DEMO-001",
+      "timestamp": "2026-10-05T10:00:00Z",
+      "activity": "exception_resolved",
+      "queue": "pharmacy",
+      "exception": "ack_unrecorded"
+    },
+    {
+      "id": "EV-020",
+      "case_id": "RX-DEMO-002",
+      "timestamp": "2026-10-05T08:00:00Z",
+      "activity": "handoff_sent",
+      "queue": "pharmacy",
+      "exception": "none"
+    },
+    {
+      "id": "EV-021",
+      "case_id": "RX-DEMO-002",
+      "timestamp": "2026-10-05T09:00:00Z",
+      "activity": "exception_recorded",
+      "queue": "pharmacy",
+      "exception": "ack_unrecorded"
+    },
+    {
+      "id": "EV-022",
+      "case_id": "RX-DEMO-002",
+      "timestamp": "2026-10-05T10:00:00Z",
+      "activity": "exception_resolved",
+      "queue": "pharmacy",
+      "exception": "ack_unrecorded"
+    }
+  ]
+}
