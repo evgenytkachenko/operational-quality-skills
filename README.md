@@ -131,3 +131,9 @@ Use `ops-referral-packets` with the [first-run guide](skills/referral-packet-aud
 The [workbench](skills/pharmacy-improvement-workbench/SKILL.md) bridges evidence-backed hypotheses and approved control evaluation: detect repeated recorded administrative exception categories across selected fictional cases, draft competing explanations and controls using host review or an explicitly requested installed local Ollama model, then bind each proposal to an accountable role, deadline and closure-evidence requirement. Drafts are not approved or implemented actions.
 
 Follow the [workflow](skills/pharmacy-improvement-workbench/references/workflow.md) for `ops-improvement`. Default mode makes no model calls; development tests use mocked responses only. The existing Control Validation skill remains responsible for approved pilots, guardrails, fidelity and measured outcomes. Read [execution limits](skills/pharmacy-improvement-workbench/references/limits.md) and [verification](docs/improvement-verification.md); no model accuracy, memory fit or real-company integration is claimed.
+
+## Control Execution Coverage
+
+The [coverage auditor](skills/control-execution-coverage/SKILL.md) reconciles an approved finite register of expected fictional administrative controls against run and skip ledgers. It distinguishes recorded success, late execution, failure, approved skip, unobserved execution and unknown coverage. It preserves retries and never treats successful execution as proof of effectiveness.
+
+Use `ops-control-coverage` with the [workflow guide](skills/control-execution-coverage/references/workflow.md). It complements the improvement workbench's draft proposals and Control Validation's outcome evaluation. No live services, control execution, schedules, notifications or model runs occur. See [verification and branch assessment](docs/control-coverage-verification.md).

@@ -1,0 +1,112 @@
+{
+  "synthetic": true,
+  "runs": [
+    {
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "32f02645b3e57a47325dcc5b2a96e20de92f946b1ecc37c62839d45593070fa6",
+      "id": "RUN-DEMO-001",
+      "obligation_id": "OB-DEMO-001",
+      "started_at": "2026-10-05T08:10:00Z",
+      "finished_at": "2026-10-05T08:20:00Z",
+      "recorded_at": "2026-10-05T08:20:10Z",
+      "result": "success"
+    },
+    {
+      "control_id": "CONTROL-DEMO-002",
+      "version": 1,
+      "scope_sha256": "d093490e7c14fde131bb4145ad019123f6b4c580c3faf4ae62efde30ebbfc265",
+      "id": "RUN-DEMO-002",
+      "obligation_id": "OB-DEMO-002",
+      "started_at": "2026-10-05T08:10:00Z",
+      "finished_at": "2026-10-05T09:20:00Z",
+      "recorded_at": "2026-10-05T09:20:10Z",
+      "result": "success"
+    },
+    {
+      "control_id": "CONTROL-DEMO-003",
+      "version": 1,
+      "scope_sha256": "794491752eebb84e6acb05d686eb1f63d7a11f976ebccb480cecaefe3d4f29d7",
+      "id": "RUN-DEMO-003",
+      "obligation_id": "OB-DEMO-003",
+      "started_at": "2026-10-05T08:10:00Z",
+      "finished_at": "2026-10-05T08:20:00Z",
+      "recorded_at": "2026-10-05T08:20:10Z",
+      "result": "failed"
+    },
+    {
+      "control_id": "CONTROL-DEMO-006",
+      "version": 1,
+      "scope_sha256": "2d3625533aa3ab347c4da35d65b3147773581cdc130607984643950097d36b16",
+      "id": "RUN-DEMO-006",
+      "obligation_id": "OB-DEMO-006",
+      "started_at": "2026-10-05T08:10:00Z",
+      "finished_at": "2026-10-05T08:20:00Z",
+      "recorded_at": "2026-10-05T08:20:10Z",
+      "result": "failed"
+    },
+    {
+      "control_id": "CONTROL-DEMO-006",
+      "version": 1,
+      "scope_sha256": "2d3625533aa3ab347c4da35d65b3147773581cdc130607984643950097d36b16",
+      "id": "RUN-DEMO-007",
+      "obligation_id": "OB-DEMO-006",
+      "started_at": "2026-10-05T08:30:00Z",
+      "finished_at": "2026-10-05T08:40:00Z",
+      "recorded_at": "2026-10-05T08:40:10Z",
+      "result": "success",
+      "previous_run_id": "RUN-DEMO-006"
+    }
+  ],
+  "skips": [
+    {
+      "id": "SKIP-DEMO-004",
+      "obligation_id": "OB-DEMO-004",
+      "obligation_sha256": "308e90179cc70193c86e292b15e9de37ab7ddf222e0498d1baafd9561a6e85b2",
+      "decision": "approved_skip",
+      "approved_at": "2026-10-04T08:00:00Z",
+      "links": [
+        {
+          "source_id": "demo:skip",
+          "quote": "Fictional owner approves SKIP-DEMO-004 372081a2aa3c0504288e51f3f05273f287fec5e52ecefcda43f7b4b799fba8a9"
+        }
+      ]
+    }
+  ],
+  "manifests": [
+    {
+      "source": "runs",
+      "obligation_ids": [
+        "OB-DEMO-001",
+        "OB-DEMO-002",
+        "OB-DEMO-003",
+        "OB-DEMO-004",
+        "OB-DEMO-005",
+        "OB-DEMO-006"
+      ],
+      "complete_from": "2026-10-05T00:00:00Z",
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "count": 5,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "skips",
+      "obligation_ids": [
+        "OB-DEMO-001",
+        "OB-DEMO-002",
+        "OB-DEMO-003",
+        "OB-DEMO-004",
+        "OB-DEMO-005",
+        "OB-DEMO-006"
+      ],
+      "complete_from": "2026-10-05T00:00:00Z",
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "count": 1,
+      "clock_uncertainty_seconds": 1
+    }
+  ]
+}
