@@ -1,0 +1,4 @@
+interface:
+  display_name: "Referral Packet Auditor"
+  short_description: "Reconcile fictional referral packet metadata"
+  default_prompt: "Use $referral-packet-auditor to review fictional administrative packet metadata with evidence and uncertainty."

@@ -1,0 +1,9 @@
+{
+  "artifacts": [
+    {
+      "ref": "demo:approval",
+      "kind": "approval",
+      "text": "Fictional administrative approval REFERRAL-DEMO-POLICY 1cb7d2fb3845c7f9d146ccb459118a992a444d8d2dcc0b77376f8b930bbcc94e"
+    }
+  ]
+}

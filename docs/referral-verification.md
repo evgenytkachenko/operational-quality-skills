@@ -1,0 +1,15 @@
+# Referral Packet Auditor verification
+
+Store branch and remote main were verified at `834cd003e7405c0d4223c55ed12e936682812674` after a safe fast-forward from `49e9ba7dd874868a6f9fc07c54425b3b6121dbf0`. Pre-merge readiness: clean worktree, expected 14 outgoing store files, credential-pattern inspection, ancestry validation and 209 passing tests. Pharmacy remains separate at `c3b2d5ba1d249569bdf3e3ea1f7bd70b2aba5d0f`; it was not merged. The new `feat/referral-packet-auditor` branch starts from the updated main.
+
+The new skill reconciles immutable fictional referral packet metadata and receiver acknowledgments. Deliverables include strict schemas and deterministic reconciliation in `referral.py`, `ops-referral-packets`, three synthetic cases, installable skill instructions, first-run/contracts documentation and tests. Shared code reused: strict validation, aware timestamps, redaction, canonical hashes, exact approval-quote provenance, bounded JSON input and private exclusive local output. No connector, query engine or third-party code was added.
+
+Verification on Python 3.12 in the virtual environment:
+
+- Full suite: 236 passed, including 27 referral tests. Tests block socket connections.
+- Six skill directories on this branch pass skill-creator validation.
+- Independent reviewer tested five synthetic scenarios and then independently ran all 27 referral tests. No significant defects found. Requested disclosure of unauthenticated source/destination mappings and supplied fingerprints is included in contracts.
+- Clean wheel build passed. Wheel contents contain six skills and no unmerged pharmacy code. Non-editable installation into a separate virtual environment ran the fictional CLI from `/tmp`; import path confirmed installed site-packages code.
+- Coverage includes metadata mismatches, required-list omissions, absent receipts/acknowledgment, acknowledgment not implying receipt, repeated identical receipt, cancellation/post-cancellation ambiguity, duplicate/unknown IDs, cross-case and revision links, missing timestamps, clock ambiguity, partial/offline/stale/unavailable feeds, count mismatches, policy tampering, injected clinical fields, event/output budgets, permissions, no overwrite and rejection of live-mode flags.
+
+Limits: only fictional metadata, no PHI or real documents/services/credentials/models. Fingerprints are supplied, not recomputed from documents; sender/receiver destination and case mapping are assumed rather than authenticated. Matching metadata does not establish clinical adequacy, consent validity, correct provider delivery, urgency, insurance coverage or scheduling readiness. Scope is one immutable revision per explicit case; no patient matching, automatic latest-version selection or whole-population conclusions. Policy approval and source completeness remain human checks. There is no live medical adapter or external action path. A separately privileged host must follow skill boundaries; CLI code cannot enforce that host's permissions. The new referral branch is committed locally only and must not be pushed or merged without further approval.

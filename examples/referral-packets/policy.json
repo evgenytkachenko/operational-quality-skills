@@ -1,0 +1,21 @@
+{
+  "version": "v1",
+  "required_types": [
+    "administrative_form",
+    "routing_sheet"
+  ],
+  "acknowledgment_seconds": 3600,
+  "delivery_seconds": 3600,
+  "max_feed_lag_seconds": 900,
+  "approval": {
+    "decision": "approved",
+    "approved_at": "2026-10-01T00:00:00Z",
+    "policy_sha256": "1cb7d2fb3845c7f9d146ccb459118a992a444d8d2dcc0b77376f8b930bbcc94e",
+    "links": [
+      {
+        "source_id": "demo:approval",
+        "quote": "Fictional administrative approval REFERRAL-DEMO-POLICY 1cb7d2fb3845c7f9d146ccb459118a992a444d8d2dcc0b77376f8b930bbcc94e"
+      }
+    ]
+  }
+}
