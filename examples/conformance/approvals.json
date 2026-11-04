@@ -1,0 +1,14 @@
+{
+  "artifacts": [
+    {
+      "ref": "policy-approval:1",
+      "kind": "approval",
+      "text": "Approved workflow policy INVOICE-APPROVAL v1 with hash 9890ad452432a200714cdb9158e2715df6b12f16f64d5f3365ad0a0bf8aabdc1, effective 2026-10-01 through 2026-10-31 UTC."
+    },
+    {
+      "ref": "exception-approval:103",
+      "kind": "approval",
+      "text": "Approved scoped permit EX-103 under hash 2c3bb17f8d992da51f867100358e713b1379d1d3740eb49c97b96bd4145c4248; prior validation record was reviewed for REQ-103."
+    }
+  ]
+}

@@ -19,6 +19,7 @@ ops-rca = "operational_quality.cli:main"
 ops-rca-review = "operational_quality.cli:review_main"
 ops-monitor = "operational_quality.monitor_cli:main"
 ops-control-validate = "operational_quality.control_cli:main"
+ops-conformance = "operational_quality.conformance_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -41,3 +42,7 @@ license-files = ["LICENSE", "third_party/*LICENSE"]
 "share/operational-quality-skills/skills/operations-control-validation" = ["skills/operations-control-validation/SKILL.md"]
 "share/operational-quality-skills/skills/operations-control-validation/agents" = ["skills/operations-control-validation/agents/openai.yaml"]
 "share/operational-quality-skills/skills/operations-control-validation/references" = ["skills/operations-control-validation/references/*.md"]
+
+"share/operational-quality-skills/skills/operations-process-conformance" = ["skills/operations-process-conformance/SKILL.md"]
+"share/operational-quality-skills/skills/operations-process-conformance/agents" = ["skills/operations-process-conformance/agents/openai.yaml"]
+"share/operational-quality-skills/skills/operations-process-conformance/references" = ["skills/operations-process-conformance/references/*.md"]

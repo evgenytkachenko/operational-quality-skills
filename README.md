@@ -1,6 +1,6 @@
 # Operational Quality Skills
 
-Three read-only agent skills for business-process delays, routing errors, rework and
+Four read-only agent skills for business-process delays, routing errors, rework and
 recurring exceptions. They combine deterministic evidence processing with host-agent
 review and explicit human decisions.
 
@@ -9,6 +9,7 @@ review and explicit human decisions.
 | [Operational Quality Monitor](skills/operational-quality-monitor/SKILL.md) | Assess population-level outcome/guardrail rates and prioritize emerging signals |
 | [Operations Root-Cause](skills/operations-root-cause/SKILL.md) | Investigate affected cases, compare causal hypotheses and propose preventive controls |
 | [Operations Control Validation](skills/operations-control-validation/SKILL.md) | Evaluate an approved pilot against outcomes, fidelity, guardrails and confounding |
+| [Operations Process Conformance](skills/operations-process-conformance/SKILL.md) | Review workflow transitions, handoffs and exceptions against an approved policy |
 
 ## Install
 
@@ -96,3 +97,19 @@ See the [evaluation contract](skills/operations-control-validation/references/co
 [host preparation and CLI workflow](skills/operations-control-validation/references/workflow.md),
 and [verification limits](docs/control-validation-verification.md). The fictional scenario
 includes both favorable observed results and an unresolved-confounding alternative.
+
+## Operations Process Conformance
+
+```sh
+ops-conformance --config examples/conformance/config.json --policy examples/conformance/policy.json --approvals examples/conformance/approvals.json --permits examples/conformance/permits.json --mock examples/conformance/fictional.json --output output/conformance-demo
+```
+
+This skill reviews selected case traces against a versioned approved workflow policy. It
+reuses existing source profiles, adds a bounded manifest lookup, applies narrowly scoped
+exceptions and accounts for incomplete evidence and timestamp uncertainty. Datadog supplies
+context, not authoritative business steps. Findings are potential deviations or unknowns,
+not compliance certification or root causes. RCA handoffs require human review.
+
+See the [policy/trace contract](skills/operations-process-conformance/references/contract.md),
+[execution workflow](skills/operations-process-conformance/references/workflow.md) and
+[verification limits](docs/conformance-verification.md).

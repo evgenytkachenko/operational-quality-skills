@@ -1,0 +1,154 @@
+{
+  "events": {
+    "workflow": {
+      "rows": [
+        {
+          "id": "a1",
+          "case_id": "REQ-101",
+          "timestamp": "2026-10-05T08:00:00Z",
+          "activity": "submitted",
+          "queue": "intake",
+          "message": "REQ-101: recorded submitted in intake."
+        },
+        {
+          "id": "a2",
+          "case_id": "REQ-101",
+          "timestamp": "2026-10-05T08:20:00Z",
+          "activity": "validated",
+          "queue": "review",
+          "message": "REQ-101: recorded validated in review."
+        },
+        {
+          "id": "a3",
+          "case_id": "REQ-101",
+          "timestamp": "2026-10-05T09:00:00Z",
+          "activity": "approved",
+          "queue": "approval",
+          "message": "REQ-101: recorded approved in approval."
+        },
+        {
+          "id": "b1",
+          "case_id": "REQ-102",
+          "timestamp": "2026-10-05T08:00:00Z",
+          "activity": "submitted",
+          "queue": "intake",
+          "message": "REQ-102: recorded submitted in intake."
+        },
+        {
+          "id": "b2",
+          "case_id": "REQ-102",
+          "timestamp": "2026-10-05T10:00:00Z",
+          "activity": "validated",
+          "queue": "review",
+          "message": "REQ-102: recorded validated in review."
+        },
+        {
+          "id": "b3",
+          "case_id": "REQ-102",
+          "timestamp": "2026-10-05T10:20:00Z",
+          "activity": "approved",
+          "queue": "approval",
+          "message": "REQ-102: recorded approved in approval."
+        },
+        {
+          "id": "c1",
+          "case_id": "REQ-103",
+          "timestamp": "2026-10-05T08:00:00Z",
+          "activity": "submitted",
+          "queue": "intake",
+          "message": "REQ-103: recorded submitted in intake."
+        },
+        {
+          "id": "c2",
+          "case_id": "REQ-103",
+          "timestamp": "2026-10-05T08:30:00Z",
+          "activity": "approved",
+          "queue": "approval",
+          "message": "REQ-103: recorded approved in approval."
+        },
+        {
+          "id": "d1",
+          "case_id": "REQ-104",
+          "timestamp": "2026-10-05T08:00:00Z",
+          "activity": "submitted",
+          "queue": "intake",
+          "message": "REQ-104: recorded submitted in intake."
+        },
+        {
+          "id": "d3",
+          "case_id": "REQ-104",
+          "timestamp": "2026-10-05T08:40:00Z",
+          "activity": "approved",
+          "queue": "approval",
+          "message": "REQ-104: recorded approved in approval."
+        }
+      ]
+    },
+    "logs": {
+      "rows": [
+        {
+          "id": "log-102",
+          "attributes": {
+            "timestamp": "2026-10-05T09:30:00Z",
+            "message": "Queue depth increased during the review interval; this alone does not establish a cause.",
+            "attributes": {
+              "case_id": "REQ-102",
+              "activity": "queue_observation",
+              "queue": "review"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "manifests": [
+    {
+      "id": "trace-REQ-101",
+      "case_id": "REQ-101",
+      "policy_id": "INVOICE-APPROVAL",
+      "policy_version": "v1",
+      "first_event_at": "2026-10-05T08:00:00Z",
+      "last_event_at": "2026-10-05T09:00:00Z",
+      "event_count": 3,
+      "complete": true,
+      "closed": true,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "id": "trace-REQ-102",
+      "case_id": "REQ-102",
+      "policy_id": "INVOICE-APPROVAL",
+      "policy_version": "v1",
+      "first_event_at": "2026-10-05T08:00:00Z",
+      "last_event_at": "2026-10-05T10:20:00Z",
+      "event_count": 3,
+      "complete": true,
+      "closed": true,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "id": "trace-REQ-103",
+      "case_id": "REQ-103",
+      "policy_id": "INVOICE-APPROVAL",
+      "policy_version": "v1",
+      "first_event_at": "2026-10-05T08:00:00Z",
+      "last_event_at": "2026-10-05T08:30:00Z",
+      "event_count": 2,
+      "complete": true,
+      "closed": true,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "id": "trace-REQ-104",
+      "case_id": "REQ-104",
+      "policy_id": "INVOICE-APPROVAL",
+      "policy_version": "v1",
+      "first_event_at": "2026-10-05T08:00:00Z",
+      "last_event_at": "2026-10-05T08:40:00Z",
+      "event_count": 3,
+      "complete": false,
+      "closed": true,
+      "clock_uncertainty_seconds": 1
+    }
+  ]
+}

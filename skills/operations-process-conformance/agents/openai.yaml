@@ -1,0 +1,4 @@
+interface:
+  display_name: "Operations Process Conformance"
+  short_description: "Review workflow traces against approved policies"
+  default_prompt: "Use $operations-process-conformance to compare these workflow traces with the approved policy, distinguish exceptions and unknowns, and prepare findings for human review."

@@ -1,0 +1,39 @@
+{
+  "workflow_source": "workflow",
+  "collection": {
+    "case_ids": [
+      "REQ-101",
+      "REQ-102",
+      "REQ-103",
+      "REQ-104"
+    ],
+    "start": "2026-10-05T00:00:00Z",
+    "end": "2026-10-06T00:00:00Z",
+    "sources": [
+      {
+        "name": "workflow",
+        "kind": "postgres",
+        "fields": {
+          "id": "id",
+          "case_id": "case_id",
+          "timestamp": "timestamp",
+          "activity": "activity",
+          "queue": "queue",
+          "message": "message"
+        }
+      },
+      {
+        "name": "logs",
+        "kind": "datadog_logs",
+        "fields": {
+          "id": "id",
+          "case_id": "attributes.attributes.case_id",
+          "timestamp": "attributes.timestamp",
+          "activity": "attributes.attributes.activity",
+          "queue": "attributes.attributes.queue",
+          "message": "attributes.message"
+        }
+      }
+    ]
+  }
+}

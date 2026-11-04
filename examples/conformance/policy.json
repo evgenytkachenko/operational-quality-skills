@@ -1,0 +1,75 @@
+{
+  "id": "INVOICE-APPROVAL",
+  "version": "v1",
+  "effective_from": "2026-10-01T00:00:00Z",
+  "effective_to": "2026-11-01T00:00:00Z",
+  "steps": [
+    "submitted",
+    "validated",
+    "approved"
+  ],
+  "initial_steps": [
+    "submitted"
+  ],
+  "terminal_steps": [
+    "approved"
+  ],
+  "required_steps": [
+    "submitted",
+    "validated",
+    "approved"
+  ],
+  "edges": [
+    {
+      "from_step": "submitted",
+      "to_step": "validated",
+      "handoffs": [
+        {
+          "from_queue": "intake",
+          "to_queue": "review"
+        }
+      ],
+      "max_elapsed_seconds": 3600
+    },
+    {
+      "from_step": "validated",
+      "to_step": "approved",
+      "handoffs": [
+        {
+          "from_queue": "review",
+          "to_queue": "approval"
+        }
+      ],
+      "max_elapsed_seconds": 7200
+    }
+  ],
+  "exceptions": [
+    {
+      "code": "PRIOR-VALIDATION",
+      "from_step": "submitted",
+      "to_step": "approved",
+      "handoffs": [
+        {
+          "from_queue": "intake",
+          "to_queue": "approval"
+        }
+      ],
+      "max_elapsed_seconds": 3600,
+      "waived_required_steps": [
+        "validated"
+      ]
+    }
+  ],
+  "approval": {
+    "decision": "approved",
+    "approved_at": "2026-09-30T12:00:00Z",
+    "policy_sha256": "9890ad452432a200714cdb9158e2715df6b12f16f64d5f3365ad0a0bf8aabdc1",
+    "links": [
+      {
+        "source_id": "policy-approval:1",
+        "part": "text",
+        "quote": "Approved workflow policy INVOICE-APPROVAL v1 with hash 9890ad452432a200714cdb9158e2715df6b12f16f64d5f3365ad0a0bf8aabdc1, effective 2026-10-01 through 2026-10-31 UTC."
+      }
+    ]
+  }
+}

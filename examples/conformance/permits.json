@@ -1,0 +1,30 @@
+{
+  "permits": [
+    {
+      "id": "EX-103",
+      "case_id": "REQ-103",
+      "policy_id": "INVOICE-APPROVAL",
+      "policy_version": "v1",
+      "code": "PRIOR-VALIDATION",
+      "from_ref": "workflow:c1",
+      "to_ref": "workflow:c2",
+      "valid_from": "2026-10-05T00:00:00Z",
+      "valid_to": "2026-10-06T00:00:00Z",
+      "approved_at": "2026-10-04T12:00:00Z",
+      "decision": "approved",
+      "links": [
+        {
+          "source_id": "exception-approval:103",
+          "part": "text",
+          "quote": "Approved scoped permit EX-103 under hash 2c3bb17f8d992da51f867100358e713b1379d1d3740eb49c97b96bd4145c4248; prior validation record was reviewed for REQ-103."
+        }
+      ]
+    }
+  ],
+  "complete_for_cases": [
+    "REQ-101",
+    "REQ-102",
+    "REQ-103",
+    "REQ-104"
+  ]
+}
