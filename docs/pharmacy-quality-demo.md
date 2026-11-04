@@ -82,3 +82,29 @@ After running the demo, check saved artifacts without network access, models or 
 The command prints a verified readable report. It loads only expected fixed filenames, bounds input sizes, rejects symlinks/nonregular artifact files and mixed output directories, and recomputes the scripted branch using the currently installed fixtures. Canonical digests compare actual JSON artifacts and their manifest, including JSON type changes. Summary contents are reconstructed, not accepted as an authority. Optional local candidate provenance is revalidated against the evidence, without executing the saved model request. If `REPORT.md` exists, its exact rendered contents must match; older runs without it can still be reviewed without modifying them.
 
 Verification is version-specific: outputs from changed fixture/code versions can fail even if internally consistent. Use the producing package version for reproduction; never bypass a mismatch by relabeling files. `START-HERE.md` is navigation text and is explicitly not verified. This is an offline consistency check against installed demo fixtures, not a signature, authentication of sources, proof of an actual model run, semantic validation, or human approval. It assumes the installed code/fixtures are trusted. The checker uses POSIX file protections consistent with this project's tested Linux environment; cross-platform behavior has not been validated.
+
+## Troubleshoot a saved run without changing it
+
+The offline reviewer now returns a specific diagnostic and next step when verification fails. Only known artifact filenames are reported; file contents, unexpected filenames and underlying exception messages are omitted. It reports the first blocking issue, not an exhaustive diagnosis. No files are repaired, deleted, renamed, copied or regenerated automatically.
+
+| Diagnostic | Meaning | Safe next step |
+|---|---|---|
+| DIRECTORY / MISSING_FILE | Wrong directory or incomplete run | Select the complete original output, or create a fresh run in a new directory |
+| UNSAFE_FILE / FILE_ACCESS | Symlink, special file or unreadable artifact | Use original regular files and your existing local permissions; do not elevate privileges to bypass checks |
+| INVALID_JSON / INVALID_SUMMARY | Malformed, ambiguous or unsupported metadata | Preserve it for inspection and reproduce with the matching trusted package; do not guess repairs |
+| UNEXPECTED_FILE | Extra files may mix runs | Select a dedicated original directory or generate a fresh run; extra filenames are not disclosed |
+| SCRIPTED_MISMATCH | A scripted artifact differs from installed fixtures | Check package revision and original run provenance; this does not prove deliberate tampering |
+| CANDIDATE_INVALID | Model candidate boundary/schema/quote validation failed | Keep it unapproved; human review separately, without automatically rerunning a model |
+| SUMMARY_MISMATCH / REPORT_MISMATCH | Summary, hashes or rendered report disagree | Investigate original JSON; do not edit hashes or report text merely to pass |
+| FILE_BUDGET / TOTAL_BUDGET | Existing byte limit exceeded | Use bounded unmodified output; limits are not loosened |
+| INTERNAL_CHECK | Verification did not complete | Preserve output and check the installed synthetic demo; no verified verdict was issued |
+
+JSON diagnostics reject duplicate object keys, nonfinite literals and exponent overflow rather than silently choosing one interpretation. Type-sensitive canonical comparisons remain in place. Recovery suggestions cannot distinguish edits from a different producing version and never authenticate evidence or authorize actions.
+
+For shell scripts, use structured output:
+
+```sh
+.venv/bin/ops-pharmacy-demo-review --directory /tmp/pharmacy-quality-demo --json
+```
+
+Exit **0** means `status: verified_demo_consistency`; exit **2** means `status: verification_failed` with `diagnostic.code`, optional safe `artifact`, `message` and `next_step`. JSON goes to stdout, with no readable report mixed into it; argument-parsing errors retain argparse's normal stderr behavior. Success includes scenario and the pilot recommendation, but is only an installed-fixture consistency result—not approval, source authenticity or model accuracy. No new file is created and no service/model is called.
