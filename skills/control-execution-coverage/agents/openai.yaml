@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control Execution Coverage"
+  short_description: "Audit fictional expected control execution evidence"
+  default_prompt: "Use $control-execution-coverage to reconcile fictional expected obligations and run records for human review."

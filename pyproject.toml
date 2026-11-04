@@ -21,6 +21,10 @@ ops-monitor = "operational_quality.monitor_cli:main"
 ops-control-validate = "operational_quality.control_cli:main"
 ops-conformance = "operational_quality.conformance_cli:main"
 ops-pharmacy-handoff = "operational_quality.pharmacy_cli:main"
+ops-control-coverage = "operational_quality.coverage_cli:main"
+ops-improvement = "operational_quality.improvement_cli:main"
+ops-referral-packets = "operational_quality.referral_cli:main"
+ops-store-handoffs = "operational_quality.store_cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -51,3 +55,18 @@ license-files = ["LICENSE", "third_party/*LICENSE"]
 "share/operational-quality-skills/skills/pharmacy-prescription-handoff-auditor" = ["skills/pharmacy-prescription-handoff-auditor/SKILL.md"]
 "share/operational-quality-skills/skills/pharmacy-prescription-handoff-auditor/agents" = ["skills/pharmacy-prescription-handoff-auditor/agents/openai.yaml"]
 "share/operational-quality-skills/skills/pharmacy-prescription-handoff-auditor/references" = ["skills/pharmacy-prescription-handoff-auditor/references/*.md"]
+"share/operational-quality-skills/skills/store-inventory-handoff-auditor" = ["skills/store-inventory-handoff-auditor/SKILL.md"]
+"share/operational-quality-skills/skills/store-inventory-handoff-auditor/agents" = ["skills/store-inventory-handoff-auditor/agents/openai.yaml"]
+"share/operational-quality-skills/skills/store-inventory-handoff-auditor/references" = ["skills/store-inventory-handoff-auditor/references/*.md"]
+
+"share/operational-quality-skills/skills/referral-packet-auditor" = ["skills/referral-packet-auditor/SKILL.md"]
+"share/operational-quality-skills/skills/referral-packet-auditor/agents" = ["skills/referral-packet-auditor/agents/openai.yaml"]
+"share/operational-quality-skills/skills/referral-packet-auditor/references" = ["skills/referral-packet-auditor/references/*.md"]
+
+"share/operational-quality-skills/skills/pharmacy-improvement-workbench" = ["skills/pharmacy-improvement-workbench/SKILL.md"]
+"share/operational-quality-skills/skills/pharmacy-improvement-workbench/agents" = ["skills/pharmacy-improvement-workbench/agents/openai.yaml"]
+"share/operational-quality-skills/skills/pharmacy-improvement-workbench/references" = ["skills/pharmacy-improvement-workbench/references/*.md"]
+
+"share/operational-quality-skills/skills/control-execution-coverage" = ["skills/control-execution-coverage/SKILL.md"]
+"share/operational-quality-skills/skills/control-execution-coverage/agents" = ["skills/control-execution-coverage/agents/openai.yaml"]
+"share/operational-quality-skills/skills/control-execution-coverage/references" = ["skills/control-execution-coverage/references/*.md"]

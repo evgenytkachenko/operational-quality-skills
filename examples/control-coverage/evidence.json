@@ -1,0 +1,14 @@
+{
+  "artifacts": [
+    {
+      "ref": "demo:register",
+      "kind": "approval",
+      "text": "Fictional owner approves CONTROL-DEMO-REGISTER 7fff360e9b02fae303a0ff0adad94ef6792132a5d276162f245546e72b1decf3"
+    },
+    {
+      "ref": "demo:skip",
+      "kind": "approval",
+      "text": "Fictional owner approves SKIP-DEMO-004 372081a2aa3c0504288e51f3f05273f287fec5e52ecefcda43f7b4b799fba8a9"
+    }
+  ]
+}

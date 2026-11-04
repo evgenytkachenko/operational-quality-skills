@@ -1,0 +1,75 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "start": "2026-10-05T00:00:00Z",
+  "as_of": "2026-10-05T12:00:00Z",
+  "grace_seconds": 300,
+  "max_feed_lag_seconds": 600,
+  "obligations": [
+    {
+      "id": "OB-DEMO-001",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "32f02645b3e57a47325dcc5b2a96e20de92f946b1ecc37c62839d45593070fa6",
+      "earliest_start": "2026-10-05T08:00:00Z",
+      "due": "2026-10-05T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-002",
+      "control_id": "CONTROL-DEMO-002",
+      "version": 1,
+      "scope_sha256": "d093490e7c14fde131bb4145ad019123f6b4c580c3faf4ae62efde30ebbfc265",
+      "earliest_start": "2026-10-05T08:00:00Z",
+      "due": "2026-10-05T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-003",
+      "control_id": "CONTROL-DEMO-003",
+      "version": 1,
+      "scope_sha256": "794491752eebb84e6acb05d686eb1f63d7a11f976ebccb480cecaefe3d4f29d7",
+      "earliest_start": "2026-10-05T08:00:00Z",
+      "due": "2026-10-05T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-004",
+      "control_id": "CONTROL-DEMO-004",
+      "version": 1,
+      "scope_sha256": "393ec0f62cd84c06fc67a3f8d930661329ff2b5d7fe72a1eac6306d1ab3ab279",
+      "earliest_start": "2026-10-05T08:00:00Z",
+      "due": "2026-10-05T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-005",
+      "control_id": "CONTROL-DEMO-005",
+      "version": 1,
+      "scope_sha256": "e97cc3973da8782e2a943fdaf4944f803e13d2d28abc0832cd5db232c30e9cfe",
+      "earliest_start": "2026-10-05T08:00:00Z",
+      "due": "2026-10-05T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-006",
+      "control_id": "CONTROL-DEMO-006",
+      "version": 1,
+      "scope_sha256": "2d3625533aa3ab347c4da35d65b3147773581cdc130607984643950097d36b16",
+      "earliest_start": "2026-10-05T08:00:00Z",
+      "due": "2026-10-05T09:00:00Z",
+      "owner_role": "operations_quality"
+    }
+  ],
+  "approval": {
+    "decision": "approved",
+    "approved_at": "2026-10-04T00:00:00Z",
+    "policy_sha256": "7fff360e9b02fae303a0ff0adad94ef6792132a5d276162f245546e72b1decf3",
+    "links": [
+      {
+        "source_id": "demo:register",
+        "quote": "Fictional owner approves CONTROL-DEMO-REGISTER 7fff360e9b02fae303a0ff0adad94ef6792132a5d276162f245546e72b1decf3"
+      }
+    ]
+  }
+}

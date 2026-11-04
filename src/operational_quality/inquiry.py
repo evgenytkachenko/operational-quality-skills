@@ -98,7 +98,7 @@ def validate_assessment(raw, packet):
     return {'assessment': result.model_dump(), 'provenance': {k: v.model_dump() for k, v in ledger.items()}, 'packet_sha256': packet['sha256'], 'review_status': 'HUMAN_REVIEW_REQUIRED', 'semantic_support': 'UNVERIFIED', 'limitations': packet['limitations']}
 
 
-def local_assessment(packet, model, client=None):
+def local_assessment(packet, model, client=None, *, system=SYSTEM):
     if len(json.dumps(packet)) > 24000:
         raise ValueError('local model input budget exceeded; narrow evidence scope')
     if not isinstance(model, str) or not model.strip() or len(model) > 100:
@@ -109,5 +109,5 @@ def local_assessment(packet, model, client=None):
         from ollama import Client
         # Fixed loopback destination; the operator must also disable server cloud/proxy features.
         client = Client(host='http://127.0.0.1:11434', timeout=60, trust_env=False)
-    reply = client.chat(model=model, messages=[{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': json.dumps(packet)}], format=Assessment.model_json_schema(), stream=False, options={'temperature': 0, 'num_predict': 3000, 'num_ctx': 16384})
+    reply = client.chat(model=model, messages=[{'role': 'system', 'content': system}, {'role': 'user', 'content': json.dumps(packet)}], format=Assessment.model_json_schema(), stream=False, options={'temperature': 0, 'num_predict': 3000, 'num_ctx': 16384})
     return validate_assessment(reply['message']['content'], packet)

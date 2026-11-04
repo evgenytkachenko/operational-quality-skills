@@ -1,0 +1,205 @@
+{
+  "synthetic": true,
+  "events": [
+    {
+      "id": "EV-001",
+      "source": "sender",
+      "case_id": "REF-DEMO-001",
+      "revision": 1,
+      "kind": "submitted",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "documents": [
+        {
+          "kind": "administrative_form",
+          "version": 1,
+          "fingerprint": "5a92d78f4f9dbfc109c8b5d6d58806018a69388fb8dc788e2a621ceb1763edac"
+        },
+        {
+          "kind": "routing_sheet",
+          "version": 1,
+          "fingerprint": "7394d60222c08958487b37dddd500b4423fc8c4b46705ba7545b84aa475b3a37"
+        }
+      ]
+    },
+    {
+      "id": "EV-002",
+      "source": "receiver",
+      "case_id": "REF-DEMO-001",
+      "revision": 1,
+      "kind": "document_received",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "documents": [
+        {
+          "kind": "administrative_form",
+          "version": 1,
+          "fingerprint": "5a92d78f4f9dbfc109c8b5d6d58806018a69388fb8dc788e2a621ceb1763edac"
+        }
+      ],
+      "related_ref": "sender:EV-001"
+    },
+    {
+      "id": "EV-010",
+      "source": "sender",
+      "case_id": "REF-DEMO-002",
+      "revision": 1,
+      "kind": "submitted",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "documents": [
+        {
+          "kind": "administrative_form",
+          "version": 1,
+          "fingerprint": "5a92d78f4f9dbfc109c8b5d6d58806018a69388fb8dc788e2a621ceb1763edac"
+        },
+        {
+          "kind": "routing_sheet",
+          "version": 1,
+          "fingerprint": "7394d60222c08958487b37dddd500b4423fc8c4b46705ba7545b84aa475b3a37"
+        }
+      ]
+    },
+    {
+      "id": "EV-011",
+      "source": "receiver",
+      "case_id": "REF-DEMO-002",
+      "revision": 1,
+      "kind": "document_received",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "documents": [
+        {
+          "kind": "administrative_form",
+          "version": 2,
+          "fingerprint": "a914310ca39595d508f4a90bace83041d150a8923bd1c27aa53401b1a9fbbb6e"
+        }
+      ],
+      "related_ref": "sender:EV-010"
+    },
+    {
+      "id": "EV-012",
+      "source": "receiver",
+      "case_id": "REF-DEMO-002",
+      "revision": 1,
+      "kind": "document_received",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:00Z",
+      "documents": [
+        {
+          "kind": "routing_sheet",
+          "version": 1,
+          "fingerprint": "7394d60222c08958487b37dddd500b4423fc8c4b46705ba7545b84aa475b3a37"
+        }
+      ],
+      "related_ref": "sender:EV-010"
+    },
+    {
+      "id": "EV-013",
+      "source": "receiver",
+      "case_id": "REF-DEMO-002",
+      "revision": 1,
+      "kind": "acknowledged",
+      "occurred_at": "2026-10-05T08:30:00Z",
+      "received_at": "2026-10-05T08:30:00Z",
+      "documents": [],
+      "related_ref": "sender:EV-010"
+    },
+    {
+      "id": "EV-020",
+      "source": "sender",
+      "case_id": "REF-DEMO-003",
+      "revision": 1,
+      "kind": "submitted",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "documents": [
+        {
+          "kind": "administrative_form",
+          "version": 1,
+          "fingerprint": "5a92d78f4f9dbfc109c8b5d6d58806018a69388fb8dc788e2a621ceb1763edac"
+        },
+        {
+          "kind": "routing_sheet",
+          "version": 1,
+          "fingerprint": "7394d60222c08958487b37dddd500b4423fc8c4b46705ba7545b84aa475b3a37"
+        }
+      ]
+    },
+    {
+      "id": "EV-021",
+      "source": "receiver",
+      "case_id": "REF-DEMO-003",
+      "revision": 1,
+      "kind": "document_received",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "documents": [
+        {
+          "kind": "administrative_form",
+          "version": 1,
+          "fingerprint": "5a92d78f4f9dbfc109c8b5d6d58806018a69388fb8dc788e2a621ceb1763edac"
+        }
+      ],
+      "related_ref": "sender:EV-020"
+    },
+    {
+      "id": "EV-022",
+      "source": "receiver",
+      "case_id": "REF-DEMO-003",
+      "revision": 1,
+      "kind": "document_received",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:00Z",
+      "documents": [
+        {
+          "kind": "routing_sheet",
+          "version": 1,
+          "fingerprint": "7394d60222c08958487b37dddd500b4423fc8c4b46705ba7545b84aa475b3a37"
+        }
+      ],
+      "related_ref": "sender:EV-020"
+    },
+    {
+      "id": "EV-023",
+      "source": "receiver",
+      "case_id": "REF-DEMO-003",
+      "revision": 1,
+      "kind": "acknowledged",
+      "occurred_at": "2026-10-05T08:30:00Z",
+      "received_at": "2026-10-05T08:30:00Z",
+      "documents": [],
+      "related_ref": "sender:EV-020"
+    }
+  ],
+  "feeds": [
+    {
+      "source": "sender",
+      "cases": [
+        "REF-DEMO-001",
+        "REF-DEMO-002",
+        "REF-DEMO-003"
+      ],
+      "count": 3,
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "offline_pending": false,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "receiver",
+      "cases": [
+        "REF-DEMO-001",
+        "REF-DEMO-002",
+        "REF-DEMO-003"
+      ],
+      "count": 7,
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "offline_pending": false,
+      "clock_uncertainty_seconds": 1
+    }
+  ]
+}

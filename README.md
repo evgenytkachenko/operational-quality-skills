@@ -116,6 +116,30 @@ See the [policy/trace contract](skills/operations-process-conformance/references
 
 ## Pharmacy Prescription Handoff Auditor (synthetic profile)
 
-The fifth skill, [Pharmacy Prescription Handoff Auditor](skills/pharmacy-prescription-handoff-auditor/SKILL.md), reconstructs fictional administrative intake, clarification, PA and pharmacy handoffs. It reports evidence-linked possible missing acknowledgments, owners, responses and next steps, recorded-status conflicts and repeated handoffs. Ambiguous identities and incomplete coverage yield unknown, and partial fills remain separate from case closure.
+The [Pharmacy Prescription Handoff Auditor](skills/pharmacy-prescription-handoff-auditor/SKILL.md), reconstructs fictional administrative intake, clarification, PA and pharmacy handoffs. It reports evidence-linked possible missing acknowledgments, owners, responses and next steps, recorded-status conflicts and repeated handoffs. Ambiguous identities and incomplete coverage yield unknown, and partial fills remain separate from case closure.
 
 Install with `python -m pip install .`, then follow the [first-run guide](skills/pharmacy-prescription-handoff-auditor/references/first-run.md) for `ops-pharmacy-handoff`. This profile is mock-only: no PHI, live pharmacy integration, clinical or payer decisions, model runs or external actions. Existing urgency labels are preserved without assigning urgency. See [verification and limits](docs/pharmacy-handoff-verification.md).
+
+## Store Inventory and Fulfillment Handoff Auditor
+
+The [store auditor](skills/store-inventory-handoff-auditor/SKILL.md) reconstructs fictional receiving, receipt-specific availability postings, reservations, picks, fulfillment and acknowledgment. It flags linked quantity discrepancies and unobserved remaining quantities while keeping returns separate and treating incomplete/offline feeds or ambiguous matches as unknown. No stock balance, loss or fault is inferred.
+
+Install with `python -m pip install .` and follow the [first-run guide](skills/store-inventory-handoff-auditor/references/first-run.md) for `ops-store-handoffs`. This separate profile is mock-only; no live vendor connector, stock adjustments, fulfillment actions, messages, schedules or model runs. See [verification](docs/store-handoffs-verification.md).
+
+## Referral Packet Auditor
+
+The [Referral Packet Auditor](skills/referral-packet-auditor/SKILL.md) reconciles fictional administrative document metadata and receiving-desk acknowledgment for an explicitly selected immutable referral packet revision. It flags checklist omissions, unobserved receipts and acknowledgments, and version/fingerprint conflicts; uncertain coverage or identity yields unknown.
+
+Use `ops-referral-packets` with the [first-run guide](skills/referral-packet-auditor/references/first-run.md). It never reads clinical contents or makes consent, clinical, urgency, scheduling or insurance decisions. This profile is mock-only, without external actions or a live medical connector. See [verification](docs/referral-verification.md).
+
+## Pharmacy Improvement Workbench (optional local LLM)
+
+The [workbench](skills/pharmacy-improvement-workbench/SKILL.md) bridges evidence-backed hypotheses and approved control evaluation: detect repeated recorded administrative exception categories across selected fictional cases, draft competing explanations and controls using host review or an explicitly requested installed local Ollama model, then bind each proposal to an accountable role, deadline and closure-evidence requirement. Drafts are not approved or implemented actions.
+
+Follow the [workflow](skills/pharmacy-improvement-workbench/references/workflow.md) for `ops-improvement`. Default mode makes no model calls; development tests use mocked responses only. The existing Control Validation skill remains responsible for approved pilots, guardrails, fidelity and measured outcomes. Read [execution limits](skills/pharmacy-improvement-workbench/references/limits.md) and [verification](docs/improvement-verification.md); no model accuracy, memory fit or real-company integration is claimed.
+
+## Control Execution Coverage
+
+The [coverage auditor](skills/control-execution-coverage/SKILL.md) reconciles an approved finite register of expected fictional administrative controls against run and skip ledgers. It distinguishes recorded success, late execution, failure, approved skip, unobserved execution and unknown coverage. It preserves retries and never treats successful execution as proof of effectiveness.
+
+Use `ops-control-coverage` with the [workflow guide](skills/control-execution-coverage/references/workflow.md). It complements the improvement workbench's draft proposals and Control Validation's outcome evaluation. No live services, control execution, schedules, notifications or model runs occur. See [verification and branch assessment](docs/control-coverage-verification.md).

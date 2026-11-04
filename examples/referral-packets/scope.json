@@ -1,0 +1,10 @@
+{
+  "synthetic": true,
+  "cases": [
+    "REF-DEMO-001",
+    "REF-DEMO-002",
+    "REF-DEMO-003"
+  ],
+  "start": "2026-10-05T00:00:00Z",
+  "as_of": "2026-10-05T12:00:00Z"
+}

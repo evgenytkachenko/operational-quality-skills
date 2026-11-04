@@ -1,0 +1,15 @@
+# Store inventory and fulfillment handoff verification
+
+This branch starts from verified remote main `49e9ba7dd874868a6f9fc07c54425b3b6121dbf0`, independently of the unmerged pharmacy branch. The pharmacy branch was pushed separately and verified at `c3b2d5ba1d249569bdf3e3ea1f7bd70b2aba5d0f`; main was not changed. This branch contains four existing main skills plus the store auditor.
+
+Deliverables: strict mock contracts and deterministic linked-quantity analysis in `store_handoffs.py`; `ops-store-handoffs` CLI; installable skill with first-run and contract references; fictional receiving/inventory/order/store records; tests and documentation. Reuses existing strict validation, aware timestamps, canonical hashes, approval evidence/quote binding, bounded reads and private exclusive report writes. No new vendor connector, query engine or copied third-party code was introduced. Existing live source clients are not invoked by this profile.
+
+Validation on Python 3.12:
+
+- Full suite: 209 passed, including 29 store tests; tests deny socket connections.
+- All five skills on this branch pass skill-creator validation.
+- Independent review reproduced a combined fulfilled/cancelled quantity contradiction that could disappear when an optional timeout rule was omitted. Validation now runs independently of timeout rules; the regression passes. Follow-up reviewer independently passed all 29 store tests and found no remaining significant defects.
+- Wheel build and non-editable installation smoke test pass from outside the checkout. Wheel contents include five skill packages and no pharmacy code. An initial wheel inspection caught stale generated build files from the prior branch; rebuilding after clearing the ignored build directory removed them.
+- Tests cover partial fulfillment, returns, duplicate IDs, conflicting statuses and explicit supersession, delayed/offline/unavailable/truncated feeds, missing source/count/time evidence, ambiguous identity/order, cross-case/invalid links, cancellation overlap, reused cycles, invalid quantities, malicious extra fields, modified approval hashes, event/output budgets, private file permissions, no-overwrite and rejection of live-mode flags.
+
+Limits: only fictional synthetic records were evaluated. No real store, employer, customer, service, credential or model was used. The CLI has no production source adapter or external action path. Availability is an incremental receipt-specific posting, not an on-hand stock snapshot. Reservation roots are independent of receipt roots; no physical stock balance, stock-loss determination, replenishment advice or inventory accounting is performed. No source completeness, policy authenticity, business-calendar timing or production mapping has been independently validated. Role hints do not confer authorization. A privileged host must follow the skill's no-action boundaries; the CLI cannot constrain that host's separate tools. This new branch is committed locally only and requires separate approval before push.

@@ -1,0 +1,10 @@
+{
+  "synthetic": true,
+  "case_ids": [
+    "RETAIL-DEMO-001",
+    "RETAIL-DEMO-002",
+    "RETAIL-DEMO-003"
+  ],
+  "start": "2026-10-05T00:00:00Z",
+  "as_of": "2026-10-05T12:00:00Z"
+}
