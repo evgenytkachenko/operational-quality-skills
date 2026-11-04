@@ -1,0 +1,42 @@
+{
+  "version": "v1",
+  "max_feed_lag_seconds": 900,
+  "rules": [
+    {
+      "trigger": "received",
+      "response": "availability_recorded",
+      "seconds": 3600
+    },
+    {
+      "trigger": "reserved",
+      "response": "picked",
+      "seconds": 3600
+    },
+    {
+      "trigger": "picked",
+      "response": "fulfilled",
+      "seconds": 3600
+    },
+    {
+      "trigger": "fulfilled",
+      "response": "handoff_sent",
+      "seconds": 3600
+    },
+    {
+      "trigger": "handoff_sent",
+      "response": "acknowledged",
+      "seconds": 3600
+    }
+  ],
+  "approval": {
+    "decision": "approved",
+    "approved_at": "2026-10-01T00:00:00Z",
+    "policy_sha256": "e34b4b125f7ac41ec4e636bc17f9634c6dc717dad3aabf366a2e4e46d690f031",
+    "links": [
+      {
+        "source_id": "demo-approval:1",
+        "quote": "Fictional store owner approves STORE-DEMO-POLICY e34b4b125f7ac41ec4e636bc17f9634c6dc717dad3aabf366a2e4e46d690f031 for administrative review only."
+      }
+    ]
+  }
+}

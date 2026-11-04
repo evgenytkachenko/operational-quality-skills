@@ -113,3 +113,9 @@ not compliance certification or root causes. RCA handoffs require human review.
 See the [policy/trace contract](skills/operations-process-conformance/references/contract.md),
 [execution workflow](skills/operations-process-conformance/references/workflow.md) and
 [verification limits](docs/conformance-verification.md).
+
+## Store Inventory and Fulfillment Handoff Auditor
+
+The [store auditor](skills/store-inventory-handoff-auditor/SKILL.md) reconstructs fictional receiving, receipt-specific availability postings, reservations, picks, fulfillment and acknowledgment. It flags linked quantity discrepancies and unobserved remaining quantities while keeping returns separate and treating incomplete/offline feeds or ambiguous matches as unknown. No stock balance, loss or fault is inferred.
+
+Install with `python -m pip install .` and follow the [first-run guide](skills/store-inventory-handoff-auditor/references/first-run.md) for `ops-store-handoffs`. This separate profile is mock-only; no live vendor connector, stock adjustments, fulfillment actions, messages, schedules or model runs. See [verification](docs/store-handoffs-verification.md).

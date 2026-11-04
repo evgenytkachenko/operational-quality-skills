@@ -1,0 +1,239 @@
+{
+  "synthetic": true,
+  "feeds": [
+    {
+      "source": "receiving",
+      "cases": [
+        "RETAIL-DEMO-001",
+        "RETAIL-DEMO-002",
+        "RETAIL-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "count": 1,
+      "available": true,
+      "truncated": false,
+      "offline_pending": false,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "inventory",
+      "cases": [
+        "RETAIL-DEMO-001",
+        "RETAIL-DEMO-002",
+        "RETAIL-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "count": 1,
+      "available": true,
+      "truncated": false,
+      "offline_pending": false,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "orders",
+      "cases": [
+        "RETAIL-DEMO-001",
+        "RETAIL-DEMO-002",
+        "RETAIL-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "count": 4,
+      "available": true,
+      "truncated": false,
+      "offline_pending": false,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "store",
+      "cases": [
+        "RETAIL-DEMO-001",
+        "RETAIL-DEMO-002",
+        "RETAIL-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "count": 9,
+      "available": true,
+      "truncated": false,
+      "offline_pending": false,
+      "clock_uncertainty_seconds": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "EV-001",
+      "source": "receiving",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "received",
+      "occurred_at": "2026-10-05T07:00:00Z",
+      "received_at": "2026-10-05T07:00:00Z",
+      "quantity": 10
+    },
+    {
+      "id": "EV-002",
+      "source": "inventory",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "availability_recorded",
+      "occurred_at": "2026-10-05T07:10:00Z",
+      "received_at": "2026-10-05T07:10:00Z",
+      "quantity": 8,
+      "related_ref": "receiving:EV-001"
+    },
+    {
+      "id": "EV-003",
+      "source": "orders",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "reserved",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "quantity": 4
+    },
+    {
+      "id": "EV-004",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "picked",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "quantity": 4,
+      "related_ref": "orders:EV-003"
+    },
+    {
+      "id": "EV-005",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "fulfilled",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:00Z",
+      "quantity": 2,
+      "related_ref": "store:EV-004"
+    },
+    {
+      "id": "EV-006",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "handoff_sent",
+      "occurred_at": "2026-10-05T08:30:00Z",
+      "received_at": "2026-10-05T08:30:00Z",
+      "quantity": 2,
+      "related_ref": "store:EV-005"
+    },
+    {
+      "id": "EV-007",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "acknowledged",
+      "occurred_at": "2026-10-05T08:40:00Z",
+      "received_at": "2026-10-05T08:40:00Z",
+      "quantity": 2,
+      "related_ref": "store:EV-006"
+    },
+    {
+      "id": "EV-008",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-001",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-001",
+      "kind": "returned",
+      "occurred_at": "2026-10-05T09:00:00Z",
+      "received_at": "2026-10-05T09:00:00Z",
+      "quantity": 1,
+      "related_ref": "store:EV-005"
+    },
+    {
+      "id": "EV-020",
+      "source": "orders",
+      "case_id": "RETAIL-DEMO-002",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-002",
+      "kind": "reserved",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "quantity": 3
+    },
+    {
+      "id": "EV-021",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-002",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-002",
+      "kind": "picked",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "quantity": 4,
+      "related_ref": "orders:EV-020"
+    },
+    {
+      "id": "EV-022",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-002",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-002",
+      "kind": "fulfilled",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:00Z",
+      "quantity": 4,
+      "related_ref": "store:EV-021"
+    },
+    {
+      "id": "EV-023",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-002",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-002",
+      "kind": "handoff_sent",
+      "occurred_at": "2026-10-05T08:30:00Z",
+      "received_at": "2026-10-05T08:30:00Z",
+      "quantity": 4,
+      "related_ref": "store:EV-022"
+    },
+    {
+      "id": "EV-030",
+      "source": "orders",
+      "case_id": "RETAIL-DEMO-003",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-003",
+      "kind": "reserved",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "quantity": 2
+    },
+    {
+      "id": "EV-031",
+      "source": "orders",
+      "case_id": "RETAIL-DEMO-003",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-003",
+      "kind": "status_recorded",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "quantity": 0,
+      "status": "complete"
+    },
+    {
+      "id": "EV-032",
+      "source": "store",
+      "case_id": "RETAIL-DEMO-003",
+      "store_id": "STORE-DEMO-001",
+      "sku": "SKU-DEMO-003",
+      "kind": "status_recorded",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:00Z",
+      "quantity": 0,
+      "status": "open"
+    }
+  ]
+}

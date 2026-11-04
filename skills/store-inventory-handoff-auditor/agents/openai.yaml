@@ -1,0 +1,4 @@
+interface:
+  display_name: "Store Inventory and Fulfillment Handoff Auditor"
+  short_description: "Review fictional retail handoffs with source evidence"
+  default_prompt: "Use $store-inventory-handoff-auditor to review fictional store handoffs with evidence and uncertainty."

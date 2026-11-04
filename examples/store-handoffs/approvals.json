@@ -1,0 +1,9 @@
+{
+  "artifacts": [
+    {
+      "ref": "demo-approval:1",
+      "kind": "approval",
+      "text": "Fictional store owner approves STORE-DEMO-POLICY e34b4b125f7ac41ec4e636bc17f9634c6dc717dad3aabf366a2e4e46d690f031 for administrative review only."
+    }
+  ]
+}
