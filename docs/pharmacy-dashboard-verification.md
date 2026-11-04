@@ -1,6 +1,6 @@
 # Portfolio dashboard verification
 
-Base: verified remote main `1e250df9807c3e00913ee5a9c98099fb5bbb0491`. New work is isolated on `feat/pharmacy-control-dashboard`; no push, merge or deployment was performed.
+Base: verified remote main `1e250df9807c3e00913ee5a9c98099fb5bbb0491`. Dashboard commit `327ccd830777112891696769f6009b3d65b9aa81` was subsequently pushed and fast-forwarded to main with authorization; both remote refs were verified at that commit. No deployment was performed.
 
 Implemented a loopback-only Python launch command, packaged local HTML/CSS/JS, a responsive review/evaluation interface, 13 fictional cases and a strict confusion-matrix calculation. Existing Referral Packet Auditor performs document metadata checks; existing Control Validation blocks an effectiveness verdict because no approved or implemented pilot is supplied. No new model adapter or vendor connector. Simulated human reviews are browser-memory changes only; ground truth and detector metrics are immutable fixtures.
 
@@ -21,3 +21,10 @@ python scripts/check_dashboard_browser.py --url http://127.0.0.1:8765 --chromium
 ```
 
 The browser script rejects non-loopback target URLs. Automated checks are not a WCAG certification or assistive-technology/user study; Safari/Firefox, other OSes, high-contrast modes and production deployment are unvalidated. Local Python HTTP serving is for a trusted single-user demo, not public hosting or an authenticated system. Fixed synthetic truth does not establish real-world detector performance. Recorded completion is replayed, never operationally blocked/reversed. Accuracy is not operational effectiveness, clinical safety or model accuracy; no such result is claimed. Human oversight and all prior read-only/clinical/privacy limits remain intact.
+
+
+## Presenter walkthrough follow-on
+
+The documentation-only `docs/portfolio-evidence-walkthrough` branch adds a four-minute narrative and case-label ledger, links it from the README and replaces the previous duplicate walkthrough. Its embedded command was executed in the virtual environment against the existing dataset and scoring function: 4 true positives, 2 false positives, 1 false negative, 5 true negatives and 1 unknown; all four documented rates and source references matched. Relative documentation links resolve. The full suite passed again: 365 tests. Runtime code and package contents were not changed, so installed-package and browser checks above remain the dashboard baseline rather than newly repeated tests.
+
+Independent review checked the narrative against the UI, source references, label ledger, denominators and insufficient-evidence output. A minor queue-filter navigation clarification was corrected; no significant defects remained. This follow-on is committed locally only and has not been pushed or merged. No model or live business service was used.

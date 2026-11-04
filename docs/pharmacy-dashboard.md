@@ -22,15 +22,9 @@ This is a local Python demonstration server, not a production deployment or auth
 
 [Mobile screenshot](images/dashboard-mobile.png)
 
-## Five-minute walkthrough
+## Present the demo
 
-1. **Orient.** The overview shows 13 screened records, six flags, one missed case and 80% recall. Read the synthetic-replay notice. These are classifier replay metrics, not production results or error reduction.
-2. **Inspect an alert.** Select REF-DEMO-003. Follow the packet → receipts → recorded completion → review path. The routing-sheet receipt is unobserved. Inspect source record IDs, timestamps, coverage and audit hash. Absence from a feed is not proof of absent documentation.
-3. **Simulate a decision.** Choose confirm, dismiss or request more evidence, then record the simulated review. The designated role is operations quality, not a real account or authorization. Choices change only memory in this tab. No POST/request, source write, approval or notification occurs. Refresh or reset restores the fictional initial decisions.
-4. **Find the blind spot.** Filter “Missed · answer key” and select REF-DEMO-007. The source feed appears complete; the authored adjudication says a receipt belongs to the wrong packet. The detector does not read ground truth. Open the answer key to see why this case is a miss.
-5. **Understand false alerts.** REF-DEMO-005 has an approved off-system record absent from the feed; REF-DEMO-006 has a delayed receipt feed. Both are false alerts relative to the fictional adjudication. Dismissing an alert does not change its fixed answer-key classification.
-6. **Keep unknown separate.** REF-DEMO-013 lacks usable coverage and adjudication. It is not treated as a cleared case or included in accuracy denominators. Only “request more evidence” is enabled for simulated review.
-7. **Evaluate the control.** Open Control evaluation. Inspect the confusion matrix, denominators and model limits. The existing Control Validation engine returns insufficient evidence because there is no approved/implemented pilot and confounders are unresolved. A future preventive deployment needs separate approval and outcome measurement.
+Use the [four-minute portfolio walkthrough](portfolio-walkthrough.md) for a presenter narrative, case-level label ledger and reproducible evidence audit.
 
 ## Fixed synthetic ground truth and calculations
 

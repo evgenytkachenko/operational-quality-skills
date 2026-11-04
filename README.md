@@ -155,3 +155,5 @@ Verification failures now identify the blocking check and a safe next step witho
 ## Local portfolio dashboard
 
 Run `ops-pharmacy-dashboard`, then open **http://127.0.0.1:8765**. [Quality desk](docs/pharmacy-dashboard.md) presents one fictional documentation-completeness control with an evidence-backed case queue, browser-only simulated review, and explicitly labeled synthetic missed-case/false-alert metrics. Responsive desktop/mobile views keep detector performance separate from unproven operational effectiveness. No patient data, model calls, external integrations or source writes.
+
+Present it with the [four-minute portfolio walkthrough](docs/portfolio-walkthrough.md), including a reproducible case-label and evidence audit.
