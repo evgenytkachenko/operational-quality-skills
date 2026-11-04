@@ -1,159 +1,74 @@
 # Operational Quality Skills
 
-Four read-only agent skills for business-process delays, routing errors, rework and
-recurring exceptions. They combine deterministic evidence processing with host-agent
-review and explicit human decisions.
+An executable portfolio of **evidence-led operational quality controls**: detect administrative exceptions, investigate competing explanations, propose preventive controls, and evaluate their execution and outcomes with human oversight.
 
-| Skill | Purpose |
-| --- | --- |
-| [Operational Quality Monitor](skills/operational-quality-monitor/SKILL.md) | Assess population-level outcome/guardrail rates and prioritize emerging signals |
-| [Operations Root-Cause](skills/operations-root-cause/SKILL.md) | Investigate affected cases, compare causal hypotheses and propose preventive controls |
-| [Operations Control Validation](skills/operations-control-validation/SKILL.md) | Evaluate an approved pilot against outcomes, fidelity, guardrails and confounding |
-| [Operations Process Conformance](skills/operations-process-conformance/SKILL.md) | Review workflow transitions, handoffs and exceptions against an approved policy |
+The repository contains nine installable agent skills, deterministic Python tools and fictional pharmacy, referral, retail and invoice workflows. It demonstrates an approach to quality engineering and operations leadership; it is not a deployed pharmacy system or evidence of real business results.
 
-## Install
+## Start here: review a control in four minutes
 
-Python 3.11+:
+![Fictional preventive-control review workspace](docs/images/dashboard-desktop.png)
 
-```sh
-python -m venv .venv
-. .venv/bin/activate
-python -m pip install -e '.[test,integrations]'
-```
+The local **Quality desk** dashboard asks whether recorded administrative completion should be reviewed when required document receipt metadata is unobserved. Inspect a case, follow its evidence, simulate a human decision and evaluate false alerts and missed cases.
 
-Copy the desired folders under `skills/` into your host's configured skills directory
-(for Codex, `~/.codex/skills/`), keeping each folder's references and agents metadata together.
-Install the CLI in the same environment the host uses. The skill is independently readable;
-the helper provides deterministic enforcement. No credentials or model installation occurs.
-This repository does not automatically install into a personal ChatGPT skill service.
+**Requirements:** Git, Python 3.11+ with `venv`/pip, and a browser. Initial installation requires access to Python dependencies unless cached. Running the default demonstrations requires no credentials, Node, model, host agent or business-service connection.
 
-## Try the fictional case
+On macOS/Linux, from a terminal:
 
 ```sh
-ops-rca --config examples/config.json --mock examples/fictional.json --output output/demo
-ops-rca-review --packet output/demo/evidence.json --assessment examples/assessment.json --output output/review
-python -m pytest -q
+git clone https://github.com/evgenytkachenko/operational-quality-skills.git
+cd operational-quality-skills
+python3 -m venv .venv
+.venv/bin/python -m pip install .
+.venv/bin/ops-pharmacy-dashboard
 ```
 
-The fictional invoice-approval case combines workflow history with Datadog-shaped logs,
-span evidence and an event. The example assessment is a hand-authored demonstration,
-not a claim of an actual model run. Read `evidence.json`, then use `inquiry.json` with the
-host agent to test competing explanations. `review.json` carries citation checks and
-explicit human-review/semantic-support limitations.
+Open **http://127.0.0.1:8765**. Stop with Ctrl+C. If the port is busy, append `--port 0` and open the printed loopback address. Already cloned? Start with `cd` into that checkout. On Windows, create the environment with `py -3 -m venv .venv`, then use `.venv\Scripts\python.exe` and `.venv\Scripts\ops-pharmacy-dashboard.exe` instead of the POSIX paths above.
 
-Production profiles are predefined: official Datadog SDK reads and a configurable
-PostgreSQL reporting view via psycopg. Scope, source field mappings and budgets live in
-JSON configuration. An operator configures approved sources once; an investigator supplies
-case IDs and dates, without raw-file exports or new connector code. `--live-read` is an
-explicit opt-in; development and tests use only synthetic responses.
+Follow the [four-minute presenter walkthrough](docs/portfolio-walkthrough.md). No installation available? The screenshot and walkthrough show the same fixed scenario and its reproducible label ledger.
 
-See the [skill](skills/operations-root-cause/SKILL.md),
-[integration and security limits](skills/operations-root-cause/references/integrations.md),
-[execution modes](skills/operations-root-cause/references/workflow.md), and
-[reuse/license decisions](docs/reuse.md).
+| Inspect | What it demonstrates |
+|---|---|
+| REF-DEMO-003 | A flag backed by submission, receipt and completion references; unobserved receipt is not proof of missing documentation |
+| REF-DEMO-005 | A false alert caused by an off-system record in the fictional answer key |
+| REF-DEMO-007 | A missed exception: apparently matching receipt metadata belongs to another packet in the answer key |
+| REF-DEMO-013 | Unknown coverage/adjudication, excluded from accuracy denominators |
 
-## Verification limits
+The authored cohort has **4 true positives, 2 false positives, 1 false negative, 5 true negatives and 1 unknown**. Recall is 4/5; precision is 4/6. These are hand-constructed replay results, not production or model accuracy. Review decisions are browser-memory simulations and never alter fixed labels. Control effectiveness remains **insufficient evidence**: no pilot has been approved or implemented for this control.
 
-Tests cover synthetic integration contracts, pagination, boundaries, quote validation,
-redaction, malformed data and CLI flow. No real Datadog/PostgreSQL instance or LLM is
-contacted in the test suite. Tenant schemas, authentication, row-level permissions and
-real model reasoning still need an authorized deployment trial. SDKs load response bodies
-before local caps; host-agent tools are governed by host permissions, not CLI enforcement.
-Redaction is best-effort, and quote validity cannot prove causality. Review before use.
+## Inspect the full quality workflow
 
-## Operational Quality Monitor
+For a separate fictional acknowledgment-control scenario, run the packaged end-to-end demo from the same checkout:
 
 ```sh
-ops-monitor --config examples/monitor/config.json --mock examples/monitor/deterioration.json --output output/monitor-demo
-ops-monitor --config examples/monitor/rolling.json --mock examples/monitor/deterioration.json --as-of 2026-10-09T00:00:00Z --output output/monitor-replay
+.venv/bin/ops-pharmacy-demo --output output/portfolio-demo
+.venv/bin/ops-pharmacy-demo-review --directory output/portfolio-demo
 ```
 
-The monitor has independent aggregate budgets and daily cohort contracts rather than RCA's
-case-ID limits. It calculates weighted rates, missingness, coverage, threshold breaches and
-descriptive window differences. It withholds comparisons for insufficient data, produces
-a host-agent review handoff and recommends human-reviewed RCA only when warranted.
+Use a new output directory for a fresh run. Open `output/portfolio-demo/START-HERE.md` for the artifact map and `REPORT.md` for the readable results. Default hypotheses and approvals are scripted fixtures, not a model run or real authorization. The offline verifier checks consistency with those fixtures; it does not authenticate sources or approve a control. Its exit code is 0 on success and 2 on verification failure.
 
-Its live profile reads an existing approved PostgreSQL aggregate reporting view through
-psycopg; sampled Datadog incident logs are not treated as a business population. See the
-[aggregate contract](skills/operational-quality-monitor/references/contracts.md),
-[one-shot/scheduled execution interface](skills/operational-quality-monitor/references/execution.md),
-[fictional review example](examples/monitor/review-example.md) and
-[monitor verification](docs/monitor-verification.md). No external schedules or notifications
-are created. The CLI performs no LLM calls; the installed skill guides host-agent review.
+This path connects **detection → evidence-backed hypotheses → proposed control → fictional pilot validation → execution coverage → descriptive outcomes**. The acknowledgment scenario's outcomes do not validate the dashboard's different documentation control. See the [demo guide and troubleshooting](docs/pharmacy-quality-demo.md).
 
-## Operations Control Validation
+## Design decisions and current status
+
+| Component | Implemented | Verification boundary |
+|---|---|---|
+| Deterministic Python tools | Bounded evidence, source references, coverage/unknown handling, aggregate denominators and citation checks | Synthetic tests cannot authenticate upstream records or establish causation |
+| Agent investigation | Skills guide competing hypotheses, discriminating checks and preventive proposals | Human semantic review is required; valid citations do not prove a cause |
+| Local LLM option | Existing Ollama adapter in workbench/demo workflows; explicit opt-in | Mocked responses tested; no model run, accuracy, memory-fit or real reasoning validation claimed |
+| Source profiles | Official Datadog SDK and PostgreSQL/psycopg read profiles for supported core workflows | Live tenants, permissions and schemas unvalidated; domain auditors are mock-only |
+| Human oversight | Review gates and separate proposal, implementation, coverage and effectiveness evidence | No automatic rollout, clinical/insurance decisions, source writes or notifications |
+
+The dashboard has no model invocation path. See [workbench execution modes](skills/pharmacy-improvement-workbench/references/workflow.md) and [integration/security limits](skills/operations-root-cause/references/integrations.md) before evaluating optional paths. Do not supply PHI or real records to these demonstrations. Keep the local demo server on loopback; it is not an authenticated production application.
+
+## Explore the implementation
+
+The [skill and CLI reference](docs/cli-reference.md) preserves installation and per-tool examples. The nine skills cover monitoring, root-cause investigation, control validation, process conformance, pharmacy handoffs, store handoffs, referral packets, pharmacy improvement and control execution coverage. The [reuse decisions](docs/reuse.md) explain architectural and licensing boundaries.
+
+To run the synthetic test suite in the same environment:
 
 ```sh
-ops-control-validate --plan examples/control-validation/plan.json --rca-review examples/control-validation/rca-review.json --evidence examples/control-validation/evidence.json --mock examples/control-validation/pilot.json --output output/control-demo
+.venv/bin/python -m pip install '.[test]'
+.venv/bin/python -m pytest -q
 ```
 
-This skill links the exact RCA-proposed control to a recorded pilot approval and fixed
-evaluation criteria. It reuses bounded aggregate evidence, checks pilot implementation
-fidelity and guardrails, reviews confounding and recommends keep/change/stop/insufficient
-evidence for human review. An approval hash is not an authenticated permission grant; no
-rollout, stopping action, schedule or notification is executed.
-
-See the [evaluation contract](skills/operations-control-validation/references/contract.md),
-[host preparation and CLI workflow](skills/operations-control-validation/references/workflow.md),
-and [verification limits](docs/control-validation-verification.md). The fictional scenario
-includes both favorable observed results and an unresolved-confounding alternative.
-
-## Operations Process Conformance
-
-```sh
-ops-conformance --config examples/conformance/config.json --policy examples/conformance/policy.json --approvals examples/conformance/approvals.json --permits examples/conformance/permits.json --mock examples/conformance/fictional.json --output output/conformance-demo
-```
-
-This skill reviews selected case traces against a versioned approved workflow policy. It
-reuses existing source profiles, adds a bounded manifest lookup, applies narrowly scoped
-exceptions and accounts for incomplete evidence and timestamp uncertainty. Datadog supplies
-context, not authoritative business steps. Findings are potential deviations or unknowns,
-not compliance certification or root causes. RCA handoffs require human review.
-
-See the [policy/trace contract](skills/operations-process-conformance/references/contract.md),
-[execution workflow](skills/operations-process-conformance/references/workflow.md) and
-[verification limits](docs/conformance-verification.md).
-
-## Pharmacy Prescription Handoff Auditor (synthetic profile)
-
-The [Pharmacy Prescription Handoff Auditor](skills/pharmacy-prescription-handoff-auditor/SKILL.md), reconstructs fictional administrative intake, clarification, PA and pharmacy handoffs. It reports evidence-linked possible missing acknowledgments, owners, responses and next steps, recorded-status conflicts and repeated handoffs. Ambiguous identities and incomplete coverage yield unknown, and partial fills remain separate from case closure.
-
-Install with `python -m pip install .`, then follow the [first-run guide](skills/pharmacy-prescription-handoff-auditor/references/first-run.md) for `ops-pharmacy-handoff`. This profile is mock-only: no PHI, live pharmacy integration, clinical or payer decisions, model runs or external actions. Existing urgency labels are preserved without assigning urgency. See [verification and limits](docs/pharmacy-handoff-verification.md).
-
-## Store Inventory and Fulfillment Handoff Auditor
-
-The [store auditor](skills/store-inventory-handoff-auditor/SKILL.md) reconstructs fictional receiving, receipt-specific availability postings, reservations, picks, fulfillment and acknowledgment. It flags linked quantity discrepancies and unobserved remaining quantities while keeping returns separate and treating incomplete/offline feeds or ambiguous matches as unknown. No stock balance, loss or fault is inferred.
-
-Install with `python -m pip install .` and follow the [first-run guide](skills/store-inventory-handoff-auditor/references/first-run.md) for `ops-store-handoffs`. This separate profile is mock-only; no live vendor connector, stock adjustments, fulfillment actions, messages, schedules or model runs. See [verification](docs/store-handoffs-verification.md).
-
-## Referral Packet Auditor
-
-The [Referral Packet Auditor](skills/referral-packet-auditor/SKILL.md) reconciles fictional administrative document metadata and receiving-desk acknowledgment for an explicitly selected immutable referral packet revision. It flags checklist omissions, unobserved receipts and acknowledgments, and version/fingerprint conflicts; uncertain coverage or identity yields unknown.
-
-Use `ops-referral-packets` with the [first-run guide](skills/referral-packet-auditor/references/first-run.md). It never reads clinical contents or makes consent, clinical, urgency, scheduling or insurance decisions. This profile is mock-only, without external actions or a live medical connector. See [verification](docs/referral-verification.md).
-
-## Pharmacy Improvement Workbench (optional local LLM)
-
-The [workbench](skills/pharmacy-improvement-workbench/SKILL.md) bridges evidence-backed hypotheses and approved control evaluation: detect repeated recorded administrative exception categories across selected fictional cases, draft competing explanations and controls using host review or an explicitly requested installed local Ollama model, then bind each proposal to an accountable role, deadline and closure-evidence requirement. Drafts are not approved or implemented actions.
-
-Follow the [workflow](skills/pharmacy-improvement-workbench/references/workflow.md) for `ops-improvement`. Default mode makes no model calls; development tests use mocked responses only. The existing Control Validation skill remains responsible for approved pilots, guardrails, fidelity and measured outcomes. Read [execution limits](skills/pharmacy-improvement-workbench/references/limits.md) and [verification](docs/improvement-verification.md); no model accuracy, memory fit or real-company integration is claimed.
-
-## Control Execution Coverage
-
-The [coverage auditor](skills/control-execution-coverage/SKILL.md) reconciles an approved finite register of expected fictional administrative controls against run and skip ledgers. It distinguishes recorded success, late execution, failure, approved skip, unobserved execution and unknown coverage. It preserves retries and never treats successful execution as proof of effectiveness.
-
-Use `ops-control-coverage` with the [workflow guide](skills/control-execution-coverage/references/workflow.md). It complements the improvement workbench's draft proposals and Control Validation's outcome evaluation. No live services, control execution, schedules, notifications or model runs occur. See [verification and branch assessment](docs/control-coverage-verification.md).
-
-## End-to-end fictional pharmacy demonstration
-
-After installation, run `ops-pharmacy-demo --output /tmp/pharmacy-quality-demo` and open the generated `START-HERE.md`. The [walkthrough](docs/pharmacy-quality-demo.md) connects detection, handoff evidence, scripted or optional local-model hypotheses, a fictional human-reviewed control, pilot validation, execution coverage and descriptive outcomes using existing components. Approvals are illustrative fixtures, never actual authorization; optional model proposals remain separate unapproved candidates. Use `--scenario missing-evidence` to see insufficient-evidence handling. No live services or model calls occur by default.
-
-For a readable result, open the demo's `REPORT.md`. Run `ops-pharmacy-demo-review --directory /tmp/pharmacy-quality-demo` for a read-only, offline consistency check and printed report. It detects changed/missing/mixed JSON artifacts against the installed scripted fixtures without running a model; it does not authenticate evidence or approve controls. See the [verification guide](docs/pharmacy-quality-demo.md#readable-results-and-offline-verification).
-
-Verification failures now identify the blocking check and a safe next step without echoing record contents. Add `--json` to `ops-pharmacy-demo-review` for structured results (exit 0 for consistency verified, 2 for failure). See [troubleshooting](docs/pharmacy-quality-demo.md#troubleshoot-a-saved-run-without-changing-it); the checker never repairs evidence or runs a model.
-
-## Local portfolio dashboard
-
-Run `ops-pharmacy-dashboard`, then open **http://127.0.0.1:8765**. [Quality desk](docs/pharmacy-dashboard.md) presents one fictional documentation-completeness control with an evidence-backed case queue, browser-only simulated review, and explicitly labeled synthetic missed-case/false-alert metrics. Responsive desktop/mobile views keep detector performance separate from unproven operational effectiveness. No patient data, model calls, external integrations or source writes.
-
-Present it with the [four-minute portfolio walkthrough](docs/portfolio-walkthrough.md), including a reproducible case-label and evidence audit.
+See [dashboard/browser verification](docs/pharmacy-dashboard-verification.md) and [first-run verification](docs/portfolio-first-run-verification.md). Automated accessibility checks are not WCAG certification. No live pharmacy outcomes, deployment, clinical safety, causal improvement or model quality are established by this project.
