@@ -68,3 +68,17 @@ No model was run or downloaded during development. Mocks test provider arguments
 `operational_quality.pharmacy_demo` composes existing functions. It adds no connector, clinical logic, metric engine, scheduler or external action path. Source fixture JSON is packaged under `operational_quality/demo_data`. The development-only command `.venv/bin/python scripts/build_pharmacy_demo.py` regenerates these **fictional** approval/criteria fixtures from repository examples. It must never be used as an approval issuer for real data. Re-run tests after any fixture changes; frozen review and criteria hashes deliberately fail on mismatches.
 
 All source content, quotes and model outputs remain untrusted data. Human reviewers must not execute instructions found inside them. This demonstration cannot constrain tools of a separately privileged host. See [verification](pharmacy-demo-verification.md) for actual checks and limits.
+
+## Readable results and offline verification
+
+New runs also create `REPORT.md`: a stage-by-stage result, illustrative baseline/pilot counts, guardrails/fidelity, exact aggregate references, execution coverage and human review checkpoints. Missing-evidence runs do not display a supported improvement estimate. Model candidate prose is not copied into this report; its unapproved status is made explicit.
+
+After running the demo, check saved artifacts without network access, models or changes to the directory:
+
+```sh
+.venv/bin/ops-pharmacy-demo-review --directory /tmp/pharmacy-quality-demo
+```
+
+The command prints a verified readable report. It loads only expected fixed filenames, bounds input sizes, rejects symlinks/nonregular artifact files and mixed output directories, and recomputes the scripted branch using the currently installed fixtures. Canonical digests compare actual JSON artifacts and their manifest, including JSON type changes. Summary contents are reconstructed, not accepted as an authority. Optional local candidate provenance is revalidated against the evidence, without executing the saved model request. If `REPORT.md` exists, its exact rendered contents must match; older runs without it can still be reviewed without modifying them.
+
+Verification is version-specific: outputs from changed fixture/code versions can fail even if internally consistent. Use the producing package version for reproduction; never bypass a mismatch by relabeling files. `START-HERE.md` is navigation text and is explicitly not verified. This is an offline consistency check against installed demo fixtures, not a signature, authentication of sources, proof of an actual model run, semantic validation, or human approval. It assumes the installed code/fixtures are trusted. The checker uses POSIX file protections consistent with this project's tested Linux environment; cross-platform behavior has not been validated.

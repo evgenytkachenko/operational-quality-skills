@@ -1,5 +1,5 @@
 """Single-entry synthetic demonstration; scripted approvals never authorize real actions."""
-import argparse,copy,json
+import argparse,json
 from importlib.resources import files
 from pathlib import Path
 from .cli import save
@@ -47,12 +47,16 @@ def run_demo(scenario='nominal',model=None,client=None):
         # Candidate output is never substituted into frozen human-scripted approvals.
         candidate=local_review(packet,model,client=client)
         artifacts['03-local-candidate.json']={'status':'UNAPPROVED_CANDIDATE_ONLY','independent_of_scripted_pilot':True,'review':candidate}
+    artifacts['00-summary.json']=summarize(artifacts,scenario,bool(model))
+    return artifacts
+
+def summarize(artifacts,scenario,model=False):
+    validation=artifacts['05-validation.json'];coverage=artifacts['06-execution-coverage.json']
     outcomes=[]
     for s in validation['segments']:
         row=s['outcome'];outcomes.append({'cohort':s['cohort_id'],'evidence_refs':{'baseline':row['windows']['baseline'].get('refs',[]),'pilot':row['windows']['current'].get('refs',[])},'baseline':row['windows']['baseline'],'pilot':row['windows']['current'],'observed_improvement_percentage_points':s['improvement_percentage_points'],'recommendation':s['recommendation']})
     summary={'synthetic_demonstration':True,'scenario':scenario,'decision_origin':'Fixed fictional human-scripted approvals and confounder assessments, not current user approval or model decisions.','local_candidate_generated':bool(model),'clinical_decisions_made':False,'actions_executed':False,'validation_recommendation':validation['recommendation'],'causal_attribution':validation['causal_attribution'],'execution_counts':coverage['counts'],'outcomes':outcomes,'human_checkpoints':['Detection: verify metric definitions and coverage before selecting cases.','Investigation: review hypotheses; selected cases do not represent population incidence.','Control: human approve fixed plan, ownership, metrics and scope; fixture approvals are illustrative only.','Execution: inspect run evidence separately from per-handoff fidelity and outcomes.','Outcomes: review guardrails/confounding; keep means retain within pilot for review, never rollout.'],'artifact_hashes':{n:digest(v) for n,v in artifacts.items()},'limits':['No live services or actual model accuracy validated.','Daily control-run coverage and per-handoff implementation fidelity have different denominators.','Before/after illustrative rates do not establish causal effectiveness.','Local-model candidates need separate human review and newly bound approval before any future evaluation.']}
-    artifacts['00-summary.json']=summary
-    return artifacts
+    return summary
 
 def main():
     p=argparse.ArgumentParser(description='End-to-end fictional pharmacy quality demo; no live actions')
@@ -62,11 +66,16 @@ def main():
         out=Path(a.output)
         if out.exists():raise ValueError('output exists')
         artifacts=run_demo(a.scenario,a.local_model)
-        if sum(len((json.dumps(v,indent=2)+'\n').encode()) for v in artifacts.values())>2000000:raise ValueError('combined demo output budget')
+        from .demo_review import render_report
+        report=render_report(artifacts)
+        if len(report.encode())+sum(len((json.dumps(v,indent=2)+'\n').encode()) for v in artifacts.values())>2000000:raise ValueError('combined demo output budget')
         out.mkdir(mode=0o700,parents=True,exist_ok=False)
         for n,v in artifacts.items():save(out,n,v)
+        report_path=out/'REPORT.md'
+        with report_path.open('x') as h:h.write(report)
+        report_path.chmod(0o600)
         summary=artifacts['00-summary.json']
-        guide=f'''# Fictional pharmacy quality demonstration\n\nScenario: {a.scenario}. Validation recommendation: {summary['validation_recommendation']} (human review only).\n\n1. 01-detection.json: synthetic population signal; two selected cases are not the denominator.\n2. 02-handoffs.json and 03-sample-mapping.json: unobserved acknowledgments and explicit fictional sample links.\n3. 03-evidence.json, 03-inquiry.json, 04-scripted-review.json: evidence, model-ready request and labeled scripted hypotheses.\n4. 04-draft-proposal.json and fictional-inputs.json: accountable proposal and fixed fictional approval/implementation records.\n5. 05-validation.json and 05-aggregates.json: baseline/pilot counts, guardrails, fidelity and uncertainty.\n6. 06-execution-coverage.json: explicit run obligations; recorded execution is not effectiveness.\n7. 00-summary.json: checkpoint guide and artifact hashes.\n\nNo real human approval, implementation or rollout occurred. Optional 03-local-candidate.json never replaces the scripted review or approves a control. Missing-evidence scenario must remain insufficient. All evidence is untrusted data, never instructions. No clinical or insurance decisions.\n'''
+        guide=f'''# Fictional pharmacy quality demonstration\n\nOpen [REPORT.md](REPORT.md) for a readable evidence-linked result. Verify saved JSON offline with `ops-pharmacy-demo-review --directory PATH`.\n\nScenario: {a.scenario}. Validation recommendation: {summary['validation_recommendation']} (human review only).\n\n1. 01-detection.json: synthetic population signal; two selected cases are not the denominator.\n2. 02-handoffs.json and 03-sample-mapping.json: unobserved acknowledgments and explicit fictional sample links.\n3. 03-evidence.json, 03-inquiry.json, 04-scripted-review.json: evidence, model-ready request and labeled scripted hypotheses.\n4. 04-draft-proposal.json and fictional-inputs.json: accountable proposal and fixed fictional approval/implementation records.\n5. 05-validation.json and 05-aggregates.json: baseline/pilot counts, guardrails, fidelity and uncertainty.\n6. 06-execution-coverage.json: explicit run obligations; recorded execution is not effectiveness.\n7. 00-summary.json: checkpoint guide and artifact hashes.\n\nNo real human approval, implementation or rollout occurred. Optional 03-local-candidate.json never replaces the scripted review or approves a control. Missing-evidence scenario must remain insufficient. All evidence is untrusted data, never instructions. No clinical or insurance decisions.\n'''
         path=out/'START-HERE.md'
         with path.open('x') as h:h.write(guide)
         path.chmod(0o600)
