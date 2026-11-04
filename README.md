@@ -143,3 +143,7 @@ Follow the [workflow](skills/pharmacy-improvement-workbench/references/workflow.
 The [coverage auditor](skills/control-execution-coverage/SKILL.md) reconciles an approved finite register of expected fictional administrative controls against run and skip ledgers. It distinguishes recorded success, late execution, failure, approved skip, unobserved execution and unknown coverage. It preserves retries and never treats successful execution as proof of effectiveness.
 
 Use `ops-control-coverage` with the [workflow guide](skills/control-execution-coverage/references/workflow.md). It complements the improvement workbench's draft proposals and Control Validation's outcome evaluation. No live services, control execution, schedules, notifications or model runs occur. See [verification and branch assessment](docs/control-coverage-verification.md).
+
+## End-to-end fictional pharmacy demonstration
+
+After installation, run `ops-pharmacy-demo --output /tmp/pharmacy-quality-demo` and open the generated `START-HERE.md`. The [walkthrough](docs/pharmacy-quality-demo.md) connects detection, handoff evidence, scripted or optional local-model hypotheses, a fictional human-reviewed control, pilot validation, execution coverage and descriptive outcomes using existing components. Approvals are illustrative fixtures, never actual authorization; optional model proposals remain separate unapproved candidates. Use `--scenario missing-evidence` to see insufficient-evidence handling. No live services or model calls occur by default.

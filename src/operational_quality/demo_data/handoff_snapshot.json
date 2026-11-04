@@ -1,0 +1,87 @@
+{
+  "synthetic": true,
+  "feeds": [
+    {
+      "source": "intake_feed",
+      "scope_case_ids": [
+        "RX-DEMO-001",
+        "RX-DEMO-002"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "event_count": 4,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "pa_feed",
+      "scope_case_ids": [
+        "RX-DEMO-001",
+        "RX-DEMO-002"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "event_count": 0,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "pharmacy_feed",
+      "scope_case_ids": [
+        "RX-DEMO-001",
+        "RX-DEMO-002"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "event_count": 0,
+      "clock_uncertainty_seconds": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "EV-010",
+      "source": "intake_feed",
+      "case_id": "RX-DEMO-001",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "kind": "intake_received",
+      "queue": "intake"
+    },
+    {
+      "id": "EV-011",
+      "source": "intake_feed",
+      "case_id": "RX-DEMO-001",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "kind": "handoff_sent",
+      "queue": "intake",
+      "to_queue": "pharmacy",
+      "owner_role": "pharmacy_team"
+    },
+    {
+      "id": "EV-020",
+      "source": "intake_feed",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:00Z",
+      "kind": "intake_received",
+      "queue": "intake"
+    },
+    {
+      "id": "EV-021",
+      "source": "intake_feed",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:00Z",
+      "kind": "handoff_sent",
+      "queue": "intake",
+      "to_queue": "pharmacy",
+      "owner_role": "pharmacy_team"
+    }
+  ]
+}

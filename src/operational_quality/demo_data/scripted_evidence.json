@@ -1,0 +1,39 @@
+{
+  "artifacts": [
+    {
+      "ref": "demo:implementation",
+      "kind": "implementation",
+      "text": "FICTIONAL SCRIPT: CONTROL-DEMO-001 administrative acknowledgment check enabled for pharmacy_standard at 2026-10-08T12:00:00Z."
+    },
+    {
+      "ref": "demo:case_mix",
+      "kind": "context",
+      "text": "FICTIONAL SCRIPT: reviewer assessed case_mix as not material for this illustrative pharmacy pilot; residual confounding is possible."
+    },
+    {
+      "ref": "demo:seasonality",
+      "kind": "context",
+      "text": "FICTIONAL SCRIPT: reviewer assessed seasonality as not material for this illustrative pharmacy pilot; residual confounding is possible."
+    },
+    {
+      "ref": "demo:concurrent_changes",
+      "kind": "context",
+      "text": "FICTIONAL SCRIPT: reviewer assessed concurrent_changes as not material for this illustrative pharmacy pilot; residual confounding is possible."
+    },
+    {
+      "ref": "demo:measurement",
+      "kind": "context",
+      "text": "FICTIONAL SCRIPT: reviewer assessed measurement as not material for this illustrative pharmacy pilot; residual confounding is possible."
+    },
+    {
+      "ref": "demo:spillover",
+      "kind": "context",
+      "text": "FICTIONAL SCRIPT: reviewer assessed spillover as not material for this illustrative pharmacy pilot; residual confounding is possible."
+    },
+    {
+      "ref": "demo:pilot-approval",
+      "kind": "approval",
+      "text": "FICTIONAL SCRIPT: approved pilot CONTROL-DEMO-001 under criteria c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6; this is illustrative approval, not user authorization."
+    }
+  ]
+}

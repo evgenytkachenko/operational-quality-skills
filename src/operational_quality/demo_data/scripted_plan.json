@@ -1,0 +1,142 @@
+{
+  "control_id": "CONTROL-DEMO-001",
+  "rca_reference": "demo:scripted-review",
+  "rca_review_sha256": "8dd93c732a8636a064feae89b8f66b63624aaf6087c38eccbcfd8d76fb1cf544",
+  "control_index": 0,
+  "proposal": "Pilot an administrative acknowledgment completeness check for human review.",
+  "registered_at": "2026-10-08T08:00:00Z",
+  "monitoring": {
+    "metrics": [
+      {
+        "id": "ack_exceptions",
+        "definition_version": "v1",
+        "role": "outcome",
+        "worse": "higher",
+        "threshold": 0.08,
+        "min_change": 0.05
+      },
+      {
+        "id": "late_handoffs",
+        "definition_version": "v1",
+        "role": "guardrail",
+        "worse": "higher",
+        "threshold": 0.1,
+        "min_change": 0.05
+      },
+      {
+        "id": "check_applied",
+        "definition_version": "v1",
+        "role": "guardrail",
+        "worse": "lower",
+        "threshold": 0.95,
+        "min_change": 0.05
+      }
+    ],
+    "cohorts": [
+      "pharmacy_standard"
+    ],
+    "windows": {
+      "baseline": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-08T00:00:00Z"
+      },
+      "current": {
+        "start": "2026-10-09T00:00:00Z",
+        "end": "2026-10-16T00:00:00Z"
+      }
+    }
+  },
+  "pilot_cohorts": [
+    "pharmacy_standard"
+  ],
+  "outcome_metric": "ack_exceptions",
+  "guardrail_metrics": [
+    "late_handoffs"
+  ],
+  "fidelity_metric": "check_applied",
+  "implemented_at": "2026-10-08T12:00:00Z",
+  "implementation_claim": "FICTIONAL SCRIPT: CONTROL-DEMO-001 administrative acknowledgment check enabled for pharmacy_standard at 2026-10-08T12:00:00Z.",
+  "implementation_links": [
+    {
+      "source_id": "demo:implementation",
+      "quote": "FICTIONAL SCRIPT: CONTROL-DEMO-001 administrative acknowledgment check enabled for pharmacy_standard at 2026-10-08T12:00:00Z."
+    }
+  ],
+  "confounders": [
+    {
+      "domain": "case_mix",
+      "status": "assessed_not_material",
+      "explanation": "FICTIONAL SCRIPT: reviewer assessed case_mix as not material for this illustrative pharmacy pilot; residual confounding is possible.",
+      "links": [
+        {
+          "source_id": "demo:case_mix",
+          "quote": "FICTIONAL SCRIPT: reviewer assessed case_mix as not material for this illustrative pharmacy pilot; residual confounding is possible."
+        }
+      ]
+    },
+    {
+      "domain": "seasonality",
+      "status": "assessed_not_material",
+      "explanation": "FICTIONAL SCRIPT: reviewer assessed seasonality as not material for this illustrative pharmacy pilot; residual confounding is possible.",
+      "links": [
+        {
+          "source_id": "demo:seasonality",
+          "quote": "FICTIONAL SCRIPT: reviewer assessed seasonality as not material for this illustrative pharmacy pilot; residual confounding is possible."
+        }
+      ]
+    },
+    {
+      "domain": "concurrent_changes",
+      "status": "assessed_not_material",
+      "explanation": "FICTIONAL SCRIPT: reviewer assessed concurrent_changes as not material for this illustrative pharmacy pilot; residual confounding is possible.",
+      "links": [
+        {
+          "source_id": "demo:concurrent_changes",
+          "quote": "FICTIONAL SCRIPT: reviewer assessed concurrent_changes as not material for this illustrative pharmacy pilot; residual confounding is possible."
+        }
+      ]
+    },
+    {
+      "domain": "measurement",
+      "status": "assessed_not_material",
+      "explanation": "FICTIONAL SCRIPT: reviewer assessed measurement as not material for this illustrative pharmacy pilot; residual confounding is possible.",
+      "links": [
+        {
+          "source_id": "demo:measurement",
+          "quote": "FICTIONAL SCRIPT: reviewer assessed measurement as not material for this illustrative pharmacy pilot; residual confounding is possible."
+        }
+      ]
+    },
+    {
+      "domain": "spillover",
+      "status": "assessed_not_material",
+      "explanation": "FICTIONAL SCRIPT: reviewer assessed spillover as not material for this illustrative pharmacy pilot; residual confounding is possible.",
+      "links": [
+        {
+          "source_id": "demo:spillover",
+          "quote": "FICTIONAL SCRIPT: reviewer assessed spillover as not material for this illustrative pharmacy pilot; residual confounding is possible."
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "control_id": "CONTROL-DEMO-001",
+    "decision": "approved_pilot",
+    "approver_role": "Fictional operations quality owner",
+    "approved_at": "2026-10-08T09:00:00Z",
+    "pilot_cohorts": [
+      "pharmacy_standard"
+    ],
+    "window": {
+      "start": "2026-10-09T00:00:00Z",
+      "end": "2026-10-16T00:00:00Z"
+    },
+    "criteria_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+    "links": [
+      {
+        "source_id": "demo:pilot-approval",
+        "quote": "FICTIONAL SCRIPT: approved pilot CONTROL-DEMO-001 under criteria c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6; this is illustrative approval, not user authorization."
+      }
+    ]
+  }
+}

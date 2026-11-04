@@ -1,0 +1,121 @@
+{
+  "synthetic": true,
+  "runs": [
+    {
+      "id": "RUN-DEMO-001",
+      "obligation_id": "OB-DEMO-001",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-09T08:10:00Z",
+      "finished_at": "2026-10-09T08:20:00Z",
+      "recorded_at": "2026-10-09T08:21:00Z",
+      "result": "success"
+    },
+    {
+      "id": "RUN-DEMO-002",
+      "obligation_id": "OB-DEMO-002",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-10T08:10:00Z",
+      "finished_at": "2026-10-10T08:20:00Z",
+      "recorded_at": "2026-10-10T08:21:00Z",
+      "result": "success"
+    },
+    {
+      "id": "RUN-DEMO-003",
+      "obligation_id": "OB-DEMO-003",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-11T08:10:00Z",
+      "finished_at": "2026-10-11T08:20:00Z",
+      "recorded_at": "2026-10-11T08:21:00Z",
+      "result": "success"
+    },
+    {
+      "id": "RUN-DEMO-004",
+      "obligation_id": "OB-DEMO-004",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-12T08:10:00Z",
+      "finished_at": "2026-10-12T08:20:00Z",
+      "recorded_at": "2026-10-12T08:21:00Z",
+      "result": "success"
+    },
+    {
+      "id": "RUN-DEMO-005",
+      "obligation_id": "OB-DEMO-005",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-13T08:10:00Z",
+      "finished_at": "2026-10-13T08:20:00Z",
+      "recorded_at": "2026-10-13T08:21:00Z",
+      "result": "success"
+    },
+    {
+      "id": "RUN-DEMO-006",
+      "obligation_id": "OB-DEMO-006",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-14T08:10:00Z",
+      "finished_at": "2026-10-14T08:20:00Z",
+      "recorded_at": "2026-10-14T08:21:00Z",
+      "result": "success"
+    },
+    {
+      "id": "RUN-DEMO-007",
+      "obligation_id": "OB-DEMO-007",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "started_at": "2026-10-15T08:10:00Z",
+      "finished_at": "2026-10-15T08:20:00Z",
+      "recorded_at": "2026-10-15T08:21:00Z",
+      "result": "success"
+    }
+  ],
+  "skips": [],
+  "manifests": [
+    {
+      "source": "runs",
+      "obligation_ids": [
+        "OB-DEMO-001",
+        "OB-DEMO-002",
+        "OB-DEMO-003",
+        "OB-DEMO-004",
+        "OB-DEMO-005",
+        "OB-DEMO-006",
+        "OB-DEMO-007"
+      ],
+      "complete_from": "2026-10-09T00:00:00Z",
+      "complete_through": "2026-10-16T00:00:00Z",
+      "available": true,
+      "truncated": false,
+      "count": 7,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "skips",
+      "obligation_ids": [
+        "OB-DEMO-001",
+        "OB-DEMO-002",
+        "OB-DEMO-003",
+        "OB-DEMO-004",
+        "OB-DEMO-005",
+        "OB-DEMO-006",
+        "OB-DEMO-007"
+      ],
+      "complete_from": "2026-10-09T00:00:00Z",
+      "complete_through": "2026-10-16T00:00:00Z",
+      "available": true,
+      "truncated": false,
+      "count": 0,
+      "clock_uncertainty_seconds": 1
+    }
+  ]
+}

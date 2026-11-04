@@ -1,0 +1,60 @@
+{
+  "observations": [
+    {
+      "claim": "Two selected fictional cases contain recorded acknowledgment exceptions; actual acknowledgment occurrence is unverified.",
+      "links": [
+        {
+          "source_id": "administrative:EV-011",
+          "part": "message",
+          "quote": "Recorded administrative exception category: ack_unrecorded."
+        },
+        {
+          "source_id": "administrative:EV-021",
+          "part": "message",
+          "quote": "Recorded administrative exception category: ack_unrecorded."
+        }
+      ]
+    }
+  ],
+  "hypotheses": [
+    {
+      "explanation": "Acknowledgment capture may be inconsistent across administrative handoffs.",
+      "status": "possible",
+      "supporting": [
+        {
+          "source_id": "administrative:EV-011",
+          "part": "message",
+          "quote": "Recorded administrative exception category: ack_unrecorded."
+        },
+        {
+          "source_id": "administrative:EV-021",
+          "part": "message",
+          "quote": "Recorded administrative exception category: ack_unrecorded."
+        }
+      ],
+      "contradicting": [],
+      "discriminating_check": "Human review capture rules and linked acknowledgment evidence in a separately approved fictional investigation.",
+      "counterfactual": "Consistent capture might reduce recorded acknowledgment exceptions; this is not established."
+    },
+    {
+      "explanation": "Delayed evidence ingestion may create apparent acknowledgment gaps.",
+      "status": "unknown",
+      "supporting": [],
+      "contradicting": [],
+      "discriminating_check": "Human review feed delay and completeness evidence before comparing outcomes.",
+      "counterfactual": "Timely ingestion might remove apparent gaps without changing actual handoffs."
+    }
+  ],
+  "controls": [
+    {
+      "proposal": "Pilot an administrative acknowledgment completeness check for human review.",
+      "owner_role": "operations_quality",
+      "measure": "Record acknowledgment exceptions divided by eligible handoffs; collect a bounded baseline before approval, compare pilot cohorts, and track false alerts and check fidelity.",
+      "review_window": "Define approved baseline and pilot windows before implementation.",
+      "tradeoff": "Additional review burden and false alerts from delayed feeds."
+    }
+  ],
+  "unknowns": [
+    "Actual acknowledgment occurrence, feed completeness, process cause and population exception rate remain unknown."
+  ]
+}

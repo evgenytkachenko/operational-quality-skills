@@ -1,0 +1,16 @@
+{
+  "review_sha256": "8dd93c732a8636a064feae89b8f66b63624aaf6087c38eccbcfd8d76fb1cf544",
+  "prepared_at": "2026-10-08T06:00:00Z",
+  "actions": [
+    {
+      "control_index": 0,
+      "hypothesis_indices": [
+        0,
+        1
+      ],
+      "owner_role": "operations_quality",
+      "review_by": "2026-10-17T00:00:00Z",
+      "closure_evidence_required": "Human-reviewed approval or rejection, defined eligible-handoff denominator, baseline/pilot evidence, false-alert guardrail and fidelity results; no automatic closure."
+    }
+  ]
+}

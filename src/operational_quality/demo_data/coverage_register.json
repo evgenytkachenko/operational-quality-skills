@@ -1,0 +1,84 @@
+{
+  "synthetic": true,
+  "version": 1,
+  "start": "2026-10-09T00:00:00Z",
+  "as_of": "2026-10-16T00:00:00Z",
+  "grace_seconds": 300,
+  "max_feed_lag_seconds": 600,
+  "obligations": [
+    {
+      "id": "OB-DEMO-001",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-09T08:00:00Z",
+      "due": "2026-10-09T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-002",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-10T08:00:00Z",
+      "due": "2026-10-10T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-003",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-11T08:00:00Z",
+      "due": "2026-10-11T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-004",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-12T08:00:00Z",
+      "due": "2026-10-12T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-005",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-13T08:00:00Z",
+      "due": "2026-10-13T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-006",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-14T08:00:00Z",
+      "due": "2026-10-14T09:00:00Z",
+      "owner_role": "operations_quality"
+    },
+    {
+      "id": "OB-DEMO-007",
+      "control_id": "CONTROL-DEMO-001",
+      "version": 1,
+      "scope_sha256": "c05b2b4b0563c1a8035db6ab93403308b1f2830b62ce8b10b6646e4dccb411e6",
+      "earliest_start": "2026-10-15T08:00:00Z",
+      "due": "2026-10-15T09:00:00Z",
+      "owner_role": "operations_quality"
+    }
+  ],
+  "approval": {
+    "decision": "approved",
+    "approved_at": "2026-10-08T09:00:00Z",
+    "policy_sha256": "317d7d9c3f4b27e99fa3a69195a0b565e78ce5d0bb2c7a1e6f1bfce1b25b3d71",
+    "links": [
+      {
+        "source_id": "demo:register",
+        "quote": "FICTIONAL SCRIPT: approved CONTROL-DEMO-REGISTER 317d7d9c3f4b27e99fa3a69195a0b565e78ce5d0bb2c7a1e6f1bfce1b25b3d71 for seven explicit checks, not an executable schedule."
+      }
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "synthetic": true,
+  "complete": true,
+  "events": [
+    {
+      "id": "EV-010",
+      "case_id": "RX-DEMO-001",
+      "timestamp": "2026-10-05T08:10:00Z",
+      "activity": "handoff_sent",
+      "queue": "pharmacy",
+      "exception": "none"
+    },
+    {
+      "id": "EV-011",
+      "case_id": "RX-DEMO-001",
+      "timestamp": "2026-10-05T11:00:00Z",
+      "activity": "exception_recorded",
+      "queue": "pharmacy",
+      "exception": "ack_unrecorded"
+    },
+    {
+      "id": "EV-020",
+      "case_id": "RX-DEMO-002",
+      "timestamp": "2026-10-05T08:10:00Z",
+      "activity": "handoff_sent",
+      "queue": "pharmacy",
+      "exception": "none"
+    },
+    {
+      "id": "EV-021",
+      "case_id": "RX-DEMO-002",
+      "timestamp": "2026-10-05T11:00:00Z",
+      "activity": "exception_recorded",
+      "queue": "pharmacy",
+      "exception": "ack_unrecorded"
+    }
+  ]
+}
