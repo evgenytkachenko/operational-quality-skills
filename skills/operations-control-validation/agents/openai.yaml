@@ -1,0 +1,4 @@
+interface:
+  display_name: "Operations Control Validation"
+  short_description: "Evaluate approved controls, outcomes and guardrails"
+  default_prompt: "Use $operations-control-validation to evaluate this approved operational control pilot and recommend keep, change, stop or insufficient evidence for human review."

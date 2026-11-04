@@ -1,0 +1,147 @@
+{
+  "assessment": {
+    "observations": [
+      {
+        "claim": "The affected invoice was assigned to domestic review and then returned for EU approval.",
+        "links": [
+          {
+            "source_id": "workflow:w2",
+            "part": "message",
+            "quote": "Assigned to domestic queue by rule R7."
+          },
+          {
+            "source_id": "workflow:w3",
+            "part": "message",
+            "quote": "Domestic reviewer returned invoice: EU approval required."
+          }
+        ]
+      }
+    ],
+    "hypotheses": [
+      {
+        "explanation": "Routing input or rule mapping lost the submitted region, causing a domestic fallback and a later handoff.",
+        "status": "possible",
+        "supporting": [
+          {
+            "source_id": "logs:l1",
+            "part": "message",
+            "quote": "Rule R7 read region as empty and selected domestic fallback."
+          },
+          {
+            "source_id": "workflow:w1",
+            "part": "message",
+            "quote": "Invoice submitted with supplier region EU."
+          }
+        ],
+        "contradicting": [],
+        "discriminating_check": "Read the R7 input mapping and contemporaneous routing payload for INV-104 within the remaining scope.",
+        "counterfactual": "If the EU region reached the routing rule, the invoice might have reached international review first."
+      },
+      {
+        "explanation": "A supplier lookup outage forced fallback routing.",
+        "status": "unknown",
+        "supporting": [],
+        "contradicting": [
+          {
+            "source_id": "spans:s1",
+            "part": "message",
+            "quote": "Supplier lookup completed successfully in 120 ms."
+          }
+        ],
+        "discriminating_check": "Check bounded lookup error evidence; one sampled successful span does not rule out an outage.",
+        "counterfactual": "Reliable lookup would prevent fallback only if missing lookup data drove the rule."
+      }
+    ],
+    "controls": [
+      {
+        "proposal": "Pilot a review queue for missing routing region instead of defaulting to domestic approval.",
+        "owner_role": "Invoice operations process owner",
+        "measure": "Collect a two-week baseline of region-related returns divided by all submitted invoices; compare with the two-week pilot and monitor approval lead time.",
+        "review_window": "Two weeks baseline plus two weeks pilot",
+        "tradeoff": "May add manual review work and delay valid domestic invoices."
+      }
+    ],
+    "unknowns": [
+      "R7 input mapping and policy intent are not provided.",
+      "Queue capacity and complete lookup coverage are unavailable.",
+      "Two selected invoices cannot establish recurrence prevalence or causal effect."
+    ]
+  },
+  "provenance": {
+    "observation_0": {
+      "claim": "The affected invoice was assigned to domestic review and then returned for EU approval.",
+      "links": [
+        {
+          "source_id": "workflow:w2",
+          "part": "message",
+          "quote": "Assigned to domestic queue by rule R7."
+        },
+        {
+          "source_id": "workflow:w3",
+          "part": "message",
+          "quote": "Domestic reviewer returned invoice: EU approval required."
+        }
+      ],
+      "quote_checks": [
+        {
+          "status": "VERIFIED_QUOTE",
+          "source_sha256": "5c6a2740733aa206ab01ef4252ce66dfa195ceb232115beaf6bdd3d0e49cda84"
+        },
+        {
+          "status": "VERIFIED_QUOTE",
+          "source_sha256": "8f79c2a4ce98511733d28fd65970eabb40774d2dd6aa3deb20f915bb5fea6bd2"
+        }
+      ],
+      "semantic_status": "UNVERIFIED"
+    },
+    "hypothesis_0_supporting": {
+      "claim": "Routing input or rule mapping lost the submitted region, causing a domestic fallback and a later handoff.",
+      "links": [
+        {
+          "source_id": "logs:l1",
+          "part": "message",
+          "quote": "Rule R7 read region as empty and selected domestic fallback."
+        },
+        {
+          "source_id": "workflow:w1",
+          "part": "message",
+          "quote": "Invoice submitted with supplier region EU."
+        }
+      ],
+      "quote_checks": [
+        {
+          "status": "VERIFIED_QUOTE",
+          "source_sha256": "c1786e2591419f1fb356753ed50a5d39b918709c0fefb33dc5ac82e0141e16a1"
+        },
+        {
+          "status": "VERIFIED_QUOTE",
+          "source_sha256": "05da9f664e9fb1c62709dca71a5794d16f61b9f0902ce303fd969078e382d794"
+        }
+      ],
+      "semantic_status": "UNVERIFIED"
+    },
+    "hypothesis_1_contradicting": {
+      "claim": "A supplier lookup outage forced fallback routing.",
+      "links": [
+        {
+          "source_id": "spans:s1",
+          "part": "message",
+          "quote": "Supplier lookup completed successfully in 120 ms."
+        }
+      ],
+      "quote_checks": [
+        {
+          "status": "VERIFIED_QUOTE",
+          "source_sha256": "59f1d6ba0ab9dff0af1b8d25d29ff6d3495f3c46c0d15851e803dd545e322f6c"
+        }
+      ],
+      "semantic_status": "UNVERIFIED"
+    }
+  },
+  "packet_sha256": "3ec569a2c49f3e0e3da6e94868d35ad0a321202cd199d96643362bdee702d1c5",
+  "review_status": "HUMAN_REVIEW_REQUIRED",
+  "semantic_support": "UNVERIFIED",
+  "limitations": [
+    "spans: Synthetic spans are sampled; no complete outage or capacity coverage."
+  ]
+}

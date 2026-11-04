@@ -1,0 +1,39 @@
+{
+  "artifacts": [
+    {
+      "ref": "change:CTRL-REGION",
+      "kind": "implementation",
+      "text": "CTRL-REGION pilot routing to a review queue was enabled for eu_standard and eu_complex at 2026-10-08T12:00:00Z."
+    },
+    {
+      "ref": "context:case_mix",
+      "kind": "context",
+      "text": "Synthetic review found stable region and complexity definitions in each segment; no material case-mix shift was identified."
+    },
+    {
+      "ref": "context:seasonality",
+      "kind": "context",
+      "text": "Synthetic review found the same weekday composition and no recorded holiday-related interruption in these windows."
+    },
+    {
+      "ref": "context:concurrent_changes",
+      "kind": "context",
+      "text": "Synthetic change register review found no other recorded process change for these pilot segments."
+    },
+    {
+      "ref": "context:measurement",
+      "kind": "context",
+      "text": "Synthetic metric-definition review confirmed version v1 and identical eligibility and missingness rules across windows."
+    },
+    {
+      "ref": "context:spillover",
+      "kind": "context",
+      "text": "Synthetic routing review found no cross-segment reassignment or shared pilot queue overflow in the supplied records."
+    },
+    {
+      "ref": "approval:CTRL-REGION",
+      "kind": "approval",
+      "text": "Approved pilot CTRL-REGION for eu_standard and eu_complex from 2026-10-09 through 2026-10-15 UTC under criteria a91807003819315815642223cfe31ba58efa40994ea891c27940f77c7e9d6715. Recorded by the invoice process owner on 2026-10-08T09:00:00Z."
+    }
+  ]
+}

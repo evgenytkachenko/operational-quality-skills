@@ -1,0 +1,152 @@
+{
+  "control_id": "CTRL-REGION",
+  "rca_reference": "rca:INV-104:review",
+  "rca_review_sha256": "7259093b473060a4d10067bb70373c921374756158103fb185b900af112ae5f8",
+  "control_index": 0,
+  "proposal": "Pilot a review queue for missing routing region instead of defaulting to domestic approval.",
+  "registered_at": "2026-10-08T08:00:00Z",
+  "monitoring": {
+    "metrics": [
+      {
+        "id": "approval_returns",
+        "definition_version": "v1",
+        "role": "outcome",
+        "worse": "higher",
+        "threshold": 0.1,
+        "min_change": 0.05
+      },
+      {
+        "id": "late_completion",
+        "definition_version": "v1",
+        "role": "guardrail",
+        "worse": "higher",
+        "threshold": 0.2,
+        "min_change": 0.05
+      },
+      {
+        "id": "control_applied",
+        "definition_version": "v1",
+        "role": "guardrail",
+        "worse": "lower",
+        "threshold": 0.95,
+        "min_change": 0.05
+      }
+    ],
+    "cohorts": [
+      "eu_standard",
+      "eu_complex"
+    ],
+    "windows": {
+      "baseline": {
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2026-10-08T00:00:00Z"
+      },
+      "current": {
+        "start": "2026-10-09T00:00:00Z",
+        "end": "2026-10-16T00:00:00Z"
+      }
+    }
+  },
+  "pilot_cohorts": [
+    "eu_standard",
+    "eu_complex"
+  ],
+  "outcome_metric": "approval_returns",
+  "guardrail_metrics": [
+    "late_completion"
+  ],
+  "fidelity_metric": "control_applied",
+  "implemented_at": "2026-10-08T12:00:00Z",
+  "implementation_claim": "CTRL-REGION pilot routing to a review queue was enabled for eu_standard and eu_complex at 2026-10-08T12:00:00Z.",
+  "implementation_links": [
+    {
+      "source_id": "change:CTRL-REGION",
+      "part": "text",
+      "quote": "CTRL-REGION pilot routing to a review queue was enabled for eu_standard and eu_complex at 2026-10-08T12:00:00Z."
+    }
+  ],
+  "confounders": [
+    {
+      "domain": "case_mix",
+      "status": "assessed_not_material",
+      "explanation": "Synthetic review found stable region and complexity definitions in each segment; no material case-mix shift was identified.",
+      "links": [
+        {
+          "source_id": "context:case_mix",
+          "part": "text",
+          "quote": "Synthetic review found stable region and complexity definitions in each segment; no material case-mix shift was identified."
+        }
+      ]
+    },
+    {
+      "domain": "seasonality",
+      "status": "assessed_not_material",
+      "explanation": "Synthetic review found the same weekday composition and no recorded holiday-related interruption in these windows.",
+      "links": [
+        {
+          "source_id": "context:seasonality",
+          "part": "text",
+          "quote": "Synthetic review found the same weekday composition and no recorded holiday-related interruption in these windows."
+        }
+      ]
+    },
+    {
+      "domain": "concurrent_changes",
+      "status": "assessed_not_material",
+      "explanation": "Synthetic change register review found no other recorded process change for these pilot segments.",
+      "links": [
+        {
+          "source_id": "context:concurrent_changes",
+          "part": "text",
+          "quote": "Synthetic change register review found no other recorded process change for these pilot segments."
+        }
+      ]
+    },
+    {
+      "domain": "measurement",
+      "status": "assessed_not_material",
+      "explanation": "Synthetic metric-definition review confirmed version v1 and identical eligibility and missingness rules across windows.",
+      "links": [
+        {
+          "source_id": "context:measurement",
+          "part": "text",
+          "quote": "Synthetic metric-definition review confirmed version v1 and identical eligibility and missingness rules across windows."
+        }
+      ]
+    },
+    {
+      "domain": "spillover",
+      "status": "assessed_not_material",
+      "explanation": "Synthetic routing review found no cross-segment reassignment or shared pilot queue overflow in the supplied records.",
+      "links": [
+        {
+          "source_id": "context:spillover",
+          "part": "text",
+          "quote": "Synthetic routing review found no cross-segment reassignment or shared pilot queue overflow in the supplied records."
+        }
+      ]
+    }
+  ],
+  "approval": {
+    "control_id": "CTRL-REGION",
+    "decision": "approved_pilot",
+    "approver_role": "Invoice process owner",
+    "approved_at": "2026-10-08T09:00:00Z",
+    "pilot_cohorts": [
+      "eu_standard",
+      "eu_complex"
+    ],
+    "window": {
+      "start": "2026-10-09T00:00:00Z",
+      "end": "2026-10-16T00:00:00Z"
+    },
+    "criteria_sha256": "a91807003819315815642223cfe31ba58efa40994ea891c27940f77c7e9d6715",
+    "links": [
+      {
+        "source_id": "approval:CTRL-REGION",
+        "part": "text",
+        "quote": "Approved pilot CTRL-REGION for eu_standard and eu_complex from 2026-10-09 through 2026-10-15 UTC under criteria a91807003819315815642223cfe31ba58efa40994ea891c27940f77c7e9d6715. Recorded by the invoice process owner on 2026-10-08T09:00:00Z."
+      }
+    ]
+  }
+}

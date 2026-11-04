@@ -1,13 +1,14 @@
 # Operational Quality Skills
 
-Two read-only agent skills for business-process delays, routing errors, rework and
-recurring exceptions. Both combine deterministic evidence processing with host-agent
+Three read-only agent skills for business-process delays, routing errors, rework and
+recurring exceptions. They combine deterministic evidence processing with host-agent
 review and explicit human decisions.
 
 | Skill | Purpose |
 | --- | --- |
 | [Operational Quality Monitor](skills/operational-quality-monitor/SKILL.md) | Assess population-level outcome/guardrail rates and prioritize emerging signals |
 | [Operations Root-Cause](skills/operations-root-cause/SKILL.md) | Investigate affected cases, compare causal hypotheses and propose preventive controls |
+| [Operations Control Validation](skills/operations-control-validation/SKILL.md) | Evaluate an approved pilot against outcomes, fidelity, guardrails and confounding |
 
 ## Install
 
@@ -19,7 +20,7 @@ python -m venv .venv
 python -m pip install -e '.[test,integrations]'
 ```
 
-Copy either or both folders under `skills/` into your host's configured skills directory
+Copy the desired folders under `skills/` into your host's configured skills directory
 (for Codex, `~/.codex/skills/`), keeping each folder's references and agents metadata together.
 Install the CLI in the same environment the host uses. The skill is independently readable;
 the helper provides deterministic enforcement. No credentials or model installation occurs.
@@ -78,3 +79,20 @@ psycopg; sampled Datadog incident logs are not treated as a business population.
 [fictional review example](examples/monitor/review-example.md) and
 [monitor verification](docs/monitor-verification.md). No external schedules or notifications
 are created. The CLI performs no LLM calls; the installed skill guides host-agent review.
+
+## Operations Control Validation
+
+```sh
+ops-control-validate --plan examples/control-validation/plan.json --rca-review examples/control-validation/rca-review.json --evidence examples/control-validation/evidence.json --mock examples/control-validation/pilot.json --output output/control-demo
+```
+
+This skill links the exact RCA-proposed control to a recorded pilot approval and fixed
+evaluation criteria. It reuses bounded aggregate evidence, checks pilot implementation
+fidelity and guardrails, reviews confounding and recommends keep/change/stop/insufficient
+evidence for human review. An approval hash is not an authenticated permission grant; no
+rollout, stopping action, schedule or notification is executed.
+
+See the [evaluation contract](skills/operations-control-validation/references/contract.md),
+[host preparation and CLI workflow](skills/operations-control-validation/references/workflow.md),
+and [verification limits](docs/control-validation-verification.md). The fictional scenario
+includes both favorable observed results and an unresolved-confounding alternative.
