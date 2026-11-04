@@ -1,0 +1,4 @@
+interface:
+  display_name: "Operations Root-Cause Analysis"
+  short_description: "Investigate delays, rework and routing exceptions"
+  default_prompt: "Use $operations-root-cause to investigate these delayed cases and propose evidence-based preventive controls."

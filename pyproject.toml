@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "operational-quality-skills"
+version = "0.1.0"
+description = "Evidence-led operational root-cause investigation"
+requires-python = ">=3.11"
+dependencies = ["pydantic>=2.7,<3"]
+
+[project.optional-dependencies]
+integrations = ["datadog-api-client>=2.30,<3", "psycopg[binary]>=3.2,<4"]
+local-model = ["ollama>=0.4,<1"]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+ops-rca = "operational_quality.cli:main"
+ops-rca-review = "operational_quality.cli:review_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "third_party/*LICENSE"]
+
+[tool.setuptools.data-files]
+"share/operational-quality-skills/skills/operations-root-cause" = ["skills/operations-root-cause/SKILL.md"]
+"share/operational-quality-skills/skills/operations-root-cause/agents" = ["skills/operations-root-cause/agents/openai.yaml"]
+"share/operational-quality-skills/skills/operations-root-cause/references" = ["skills/operations-root-cause/references/*.md"]

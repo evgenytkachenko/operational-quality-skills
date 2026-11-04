@@ -1,0 +1,68 @@
+{
+  "observations": [
+    {
+      "claim": "The affected invoice was assigned to domestic review and then returned for EU approval.",
+      "links": [
+        {
+          "source_id": "workflow:w2",
+          "part": "message",
+          "quote": "Assigned to domestic queue by rule R7."
+        },
+        {
+          "source_id": "workflow:w3",
+          "part": "message",
+          "quote": "Domestic reviewer returned invoice: EU approval required."
+        }
+      ]
+    }
+  ],
+  "hypotheses": [
+    {
+      "explanation": "Routing input or rule mapping lost the submitted region, causing a domestic fallback and a later handoff.",
+      "status": "possible",
+      "supporting": [
+        {
+          "source_id": "logs:l1",
+          "part": "message",
+          "quote": "Rule R7 read region as empty and selected domestic fallback."
+        },
+        {
+          "source_id": "workflow:w1",
+          "part": "message",
+          "quote": "Invoice submitted with supplier region EU."
+        }
+      ],
+      "contradicting": [],
+      "discriminating_check": "Read the R7 input mapping and contemporaneous routing payload for INV-104 within the remaining scope.",
+      "counterfactual": "If the EU region reached the routing rule, the invoice might have reached international review first."
+    },
+    {
+      "explanation": "A supplier lookup outage forced fallback routing.",
+      "status": "unknown",
+      "supporting": [],
+      "contradicting": [
+        {
+          "source_id": "spans:s1",
+          "part": "message",
+          "quote": "Supplier lookup completed successfully in 120 ms."
+        }
+      ],
+      "discriminating_check": "Check bounded lookup error evidence; one sampled successful span does not rule out an outage.",
+      "counterfactual": "Reliable lookup would prevent fallback only if missing lookup data drove the rule."
+    }
+  ],
+  "controls": [
+    {
+      "proposal": "Pilot a review queue for missing routing region instead of defaulting to domestic approval.",
+      "owner_role": "Invoice operations process owner",
+      "measure": "Collect a two-week baseline of region-related returns divided by all submitted invoices; compare with the two-week pilot and monitor approval lead time.",
+      "review_window": "Two weeks baseline plus two weeks pilot",
+      "tradeoff": "May add manual review work and delay valid domestic invoices."
+    }
+  ],
+  "unknowns": [
+    "R7 input mapping and policy intent are not provided.",
+    "Queue capacity and complete lookup coverage are unavailable.",
+    "Two selected invoices cannot establish recurrence prevalence or causal effect."
+  ]
+}

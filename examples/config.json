@@ -1,0 +1,58 @@
+{
+  "case_ids": [
+    "INV-104",
+    "INV-105"
+  ],
+  "start": "2026-10-01T08:00:00Z",
+  "end": "2026-10-02T08:00:00Z",
+  "sources": [
+    {
+      "name": "workflow",
+      "kind": "postgres",
+      "fields": {
+        "id": "id",
+        "case_id": "case_id",
+        "timestamp": "timestamp",
+        "activity": "activity",
+        "queue": "queue",
+        "message": "message"
+      }
+    },
+    {
+      "name": "logs",
+      "kind": "datadog_logs",
+      "fields": {
+        "id": "id",
+        "case_id": "attributes.attributes.case_id",
+        "timestamp": "attributes.timestamp",
+        "activity": "attributes.attributes.activity",
+        "queue": "attributes.attributes.queue",
+        "message": "attributes.message"
+      }
+    },
+    {
+      "name": "spans",
+      "kind": "datadog_spans",
+      "fields": {
+        "id": "id",
+        "case_id": "attributes.attributes.case_id",
+        "timestamp": "attributes.timestamp",
+        "activity": "attributes.attributes.activity",
+        "queue": "attributes.attributes.queue",
+        "message": "attributes.message"
+      }
+    },
+    {
+      "name": "events",
+      "kind": "datadog_events",
+      "fields": {
+        "id": "id",
+        "case_id": "attributes.attributes.case_id",
+        "timestamp": "attributes.timestamp",
+        "activity": "attributes.attributes.activity",
+        "queue": "attributes.attributes.queue",
+        "message": "attributes.message"
+      }
+    }
+  ]
+}

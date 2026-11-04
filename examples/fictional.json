@@ -1,0 +1,121 @@
+{
+  "workflow": {
+    "rows": [
+      {
+        "id": "w1",
+        "case_id": "INV-104",
+        "timestamp": "2026-10-01T08:00:00Z",
+        "activity": "submitted",
+        "queue": "intake",
+        "message": "Invoice submitted with supplier region EU."
+      },
+      {
+        "id": "w2",
+        "case_id": "INV-104",
+        "timestamp": "2026-10-01T08:05:00Z",
+        "activity": "assigned",
+        "queue": "domestic",
+        "message": "Assigned to domestic queue by rule R7."
+      },
+      {
+        "id": "w3",
+        "case_id": "INV-104",
+        "timestamp": "2026-10-01T12:00:00Z",
+        "activity": "returned",
+        "queue": "intake",
+        "message": "Domestic reviewer returned invoice: EU approval required."
+      },
+      {
+        "id": "w4",
+        "case_id": "INV-104",
+        "timestamp": "2026-10-01T12:05:00Z",
+        "activity": "assigned",
+        "queue": "international",
+        "message": "Assigned to international queue after manual correction."
+      },
+      {
+        "id": "w5",
+        "case_id": "INV-104",
+        "timestamp": "2026-10-01T13:00:00Z",
+        "activity": "approved",
+        "queue": "international",
+        "message": "International reviewer approved invoice."
+      },
+      {
+        "id": "w6",
+        "case_id": "INV-105",
+        "timestamp": "2026-10-01T08:10:00Z",
+        "activity": "submitted",
+        "queue": "intake",
+        "message": "Invoice submitted with supplier region EU."
+      },
+      {
+        "id": "w7",
+        "case_id": "INV-105",
+        "timestamp": "2026-10-01T08:15:00Z",
+        "activity": "assigned",
+        "queue": "international",
+        "message": "Assigned to international queue by rule R8."
+      },
+      {
+        "id": "w8",
+        "case_id": "INV-105",
+        "timestamp": "2026-10-01T09:00:00Z",
+        "activity": "approved",
+        "queue": "international",
+        "message": "International reviewer approved invoice."
+      }
+    ]
+  },
+  "logs": {
+    "rows": [
+      {
+        "id": "l1",
+        "attributes": {
+          "timestamp": "2026-10-01T08:04:00Z",
+          "message": "Rule R7 read region as empty and selected domestic fallback.",
+          "attributes": {
+            "case_id": "INV-104",
+            "activity": "routing",
+            "queue": "domestic"
+          }
+        }
+      }
+    ]
+  },
+  "spans": {
+    "rows": [
+      {
+        "id": "s1",
+        "attributes": {
+          "timestamp": "2026-10-01T08:04:00Z",
+          "message": "Supplier lookup completed successfully in 120 ms.",
+          "attributes": {
+            "case_id": "INV-104",
+            "activity": "supplier_lookup",
+            "queue": "router"
+          }
+        }
+      }
+    ],
+    "limitations": [
+      "Synthetic spans are sampled; no complete outage or capacity coverage."
+    ]
+  },
+  "events": {
+    "rows": [
+      {
+        "id": "e1",
+        "attributes": {
+          "timestamp": "2026-10-01T12:03:00Z",
+          "message": "Manual review found EU region in submitted invoice.",
+          "attributes": {
+            "case_id": "INV-104",
+            "activity": "review_note",
+            "queue": "intake"
+          }
+        }
+      }
+    ]
+  }
+}
