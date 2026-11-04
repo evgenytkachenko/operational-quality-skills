@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pharmacy Prescription Handoff Auditor"
+  short_description: "Review fictional prescription administrative handoffs"
+  default_prompt: "Use $pharmacy-prescription-handoff-auditor to review fictional administrative handoffs with evidence and uncertainty."

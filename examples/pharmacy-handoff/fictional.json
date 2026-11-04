@@ -1,0 +1,182 @@
+{
+  "synthetic": true,
+  "feeds": [
+    {
+      "source": "intake_feed",
+      "scope_case_ids": [
+        "RX-DEMO-001",
+        "RX-DEMO-002",
+        "RX-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "event_count": 7,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "pa_feed",
+      "scope_case_ids": [
+        "RX-DEMO-001",
+        "RX-DEMO-002",
+        "RX-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "event_count": 2,
+      "clock_uncertainty_seconds": 1
+    },
+    {
+      "source": "pharmacy_feed",
+      "scope_case_ids": [
+        "RX-DEMO-001",
+        "RX-DEMO-002",
+        "RX-DEMO-003"
+      ],
+      "complete_through": "2026-10-05T12:00:00Z",
+      "available": true,
+      "truncated": false,
+      "event_count": 3,
+      "clock_uncertainty_seconds": 1
+    }
+  ],
+  "events": [
+    {
+      "id": "EV-001",
+      "case_id": "RX-DEMO-001",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:10Z",
+      "kind": "intake_received",
+      "source": "intake_feed",
+      "queue": "intake",
+      "existing_urgency": "source_marked_urgent"
+    },
+    {
+      "id": "EV-002",
+      "case_id": "RX-DEMO-001",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:10Z",
+      "kind": "handoff_sent",
+      "source": "intake_feed",
+      "queue": "intake",
+      "to_queue": "pharmacy"
+    },
+    {
+      "id": "EV-003",
+      "case_id": "RX-DEMO-001",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:10Z",
+      "kind": "clarification_requested",
+      "source": "intake_feed",
+      "queue": "clarification"
+    },
+    {
+      "id": "EV-004",
+      "case_id": "RX-DEMO-001",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:30:00Z",
+      "received_at": "2026-10-05T08:30:10Z",
+      "kind": "pa_status_recorded",
+      "source": "pa_feed",
+      "queue": "prior_auth",
+      "pa_request_id": "PA-DEMO-001",
+      "pa_status": "approved"
+    },
+    {
+      "id": "EV-010",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:10Z",
+      "kind": "intake_received",
+      "source": "intake_feed",
+      "queue": "intake"
+    },
+    {
+      "id": "EV-011",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:10Z",
+      "kind": "handoff_sent",
+      "source": "intake_feed",
+      "queue": "intake",
+      "to_queue": "pharmacy",
+      "fill_id": "FILL-01"
+    },
+    {
+      "id": "EV-012",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:10Z",
+      "kind": "handoff_acknowledged",
+      "source": "pharmacy_feed",
+      "queue": "pharmacy",
+      "related_ref": "intake_feed:EV-011",
+      "owner_role": "pharmacy_team",
+      "fill_id": "FILL-01"
+    },
+    {
+      "id": "EV-013",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:30:00Z",
+      "received_at": "2026-10-05T08:30:10Z",
+      "kind": "partial_fill_recorded",
+      "source": "pharmacy_feed",
+      "queue": "pharmacy",
+      "fill_id": "FILL-01"
+    },
+    {
+      "id": "EV-014",
+      "case_id": "RX-DEMO-002",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:40:00Z",
+      "received_at": "2026-10-05T08:40:10Z",
+      "kind": "handoff_sent",
+      "source": "intake_feed",
+      "queue": "intake",
+      "to_queue": "pharmacy",
+      "fill_id": "FILL-02"
+    },
+    {
+      "id": "EV-020",
+      "case_id": "RX-DEMO-003",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:00:00Z",
+      "received_at": "2026-10-05T08:00:10Z",
+      "kind": "intake_received",
+      "source": "intake_feed",
+      "queue": "intake"
+    },
+    {
+      "id": "EV-021",
+      "case_id": "RX-DEMO-003",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:10:00Z",
+      "received_at": "2026-10-05T08:10:10Z",
+      "kind": "pa_status_recorded",
+      "source": "pa_feed",
+      "queue": "prior_auth",
+      "pa_request_id": "PA-DEMO-003",
+      "pa_status": "approved"
+    },
+    {
+      "id": "EV-022",
+      "case_id": "RX-DEMO-003",
+      "episode_id": "EP-01",
+      "occurred_at": "2026-10-05T08:20:00Z",
+      "received_at": "2026-10-05T08:20:10Z",
+      "kind": "pa_status_recorded",
+      "source": "pharmacy_feed",
+      "queue": "pharmacy",
+      "pa_request_id": "PA-DEMO-003",
+      "pa_status": "denied"
+    }
+  ]
+}

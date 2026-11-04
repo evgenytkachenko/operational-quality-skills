@@ -1,0 +1,23 @@
+{
+  "version": "v1",
+  "effective_from": "2026-10-01T00:00:00Z",
+  "effective_to": "2026-11-01T00:00:00Z",
+  "acknowledgment_seconds": 3600,
+  "owner_seconds": 3600,
+  "clarification_seconds": 7200,
+  "approval_next_step_seconds": 3600,
+  "max_feed_lag_seconds": 900,
+  "repeated_handoff_count": 3,
+  "approval": {
+    "decision": "approved",
+    "approved_at": "2026-09-30T12:00:00Z",
+    "policy_sha256": "a815f609d3059dd8c1550f4df61e7c33adaced36dfa2ab874e4ca255fe65a1dc",
+    "links": [
+      {
+        "source_id": "demo-policy:1",
+        "part": "text",
+        "quote": "Fictional operations owner approved PHARMACY-DEMO-HANDOFF thresholds under hash a815f609d3059dd8c1550f4df61e7c33adaced36dfa2ab874e4ca255fe65a1dc; these are administrative review thresholds, not clinical urgency rules."
+      }
+    ]
+  }
+}

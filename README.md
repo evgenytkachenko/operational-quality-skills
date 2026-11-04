@@ -113,3 +113,9 @@ not compliance certification or root causes. RCA handoffs require human review.
 See the [policy/trace contract](skills/operations-process-conformance/references/contract.md),
 [execution workflow](skills/operations-process-conformance/references/workflow.md) and
 [verification limits](docs/conformance-verification.md).
+
+## Pharmacy Prescription Handoff Auditor (synthetic profile)
+
+The fifth skill, [Pharmacy Prescription Handoff Auditor](skills/pharmacy-prescription-handoff-auditor/SKILL.md), reconstructs fictional administrative intake, clarification, PA and pharmacy handoffs. It reports evidence-linked possible missing acknowledgments, owners, responses and next steps, recorded-status conflicts and repeated handoffs. Ambiguous identities and incomplete coverage yield unknown, and partial fills remain separate from case closure.
+
+Install with `python -m pip install .`, then follow the [first-run guide](skills/pharmacy-prescription-handoff-auditor/references/first-run.md) for `ops-pharmacy-handoff`. This profile is mock-only: no PHI, live pharmacy integration, clinical or payer decisions, model runs or external actions. Existing urgency labels are preserved without assigning urgency. See [verification and limits](docs/pharmacy-handoff-verification.md).
