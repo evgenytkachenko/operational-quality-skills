@@ -2,3 +2,6 @@ recursive-include skills *.md *.yaml
 recursive-include docs *.md
 recursive-include examples *.json *.md
 recursive-include third_party *LICENSE
+
+recursive-include docs/images *.png
+include scripts/check_dashboard_browser.py

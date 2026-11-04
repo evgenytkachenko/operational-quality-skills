@@ -21,6 +21,7 @@ ops-monitor = "operational_quality.monitor_cli:main"
 ops-control-validate = "operational_quality.control_cli:main"
 ops-conformance = "operational_quality.conformance_cli:main"
 ops-pharmacy-demo-review = "operational_quality.demo_review:main"
+ops-pharmacy-dashboard = "operational_quality.dashboard:main"
 ops-pharmacy-demo = "operational_quality.pharmacy_demo:main"
 ops-pharmacy-handoff = "operational_quality.pharmacy_cli:main"
 ops-control-coverage = "operational_quality.coverage_cli:main"
@@ -74,4 +75,4 @@ license-files = ["LICENSE", "third_party/*LICENSE"]
 "share/operational-quality-skills/skills/control-execution-coverage/references" = ["skills/control-execution-coverage/references/*.md"]
 
 [tool.setuptools.package-data]
-operational_quality = ["demo_data/*.json"]
+operational_quality = ["demo_data/*.json", "dashboard_assets/*"]
